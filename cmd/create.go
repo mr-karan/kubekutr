@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/urfave/cli"
 	models "zerodha.tech/janus/models"
 	"zerodha.tech/janus/utils"
@@ -46,52 +44,38 @@ func (hub *Hub) create(cliCtx *cli.Context) error {
 		return err
 	}
 	// If a particular resource type is selected, create manifest only for that
-	switch cliCtx.String("resource") {
-	case "deployment":
-		for _, dep := range hub.Config.Deployments {
-			if cliCtx.String("name") != "" {
-				if cliCtx.String("name") != dep.Name {
-					continue
-				}
-			}
-			err := utils.CreateResource(dep, projectDir)
-			if err != nil {
-				return err
-			}
-			hub.Logger.Debugf("Created manifest for deployment: %s", dep.Name)
-		}
-	case "service":
-		// Create services
-		for _, svc := range hub.Config.Services {
-			if cliCtx.String("name") != "" {
-				if cliCtx.String("name") != svc.Name {
-					continue
-				}
-			}
-			err := utils.CreateResource(svc, projectDir)
-			if err != nil {
-				return err
-			}
-			hub.Logger.Debugf("Created manifest for service: %s", svc.Name)
-		}
-	case "ingress":
-		// Create ingress
-		for _, ing := range hub.Config.Ingresses {
-			if cliCtx.String("name") != "" {
-				if cliCtx.String("name") != ing.Name {
-					continue
-				}
-			}
-			err := utils.CreateResource(ing, projectDir)
-			if err != nil {
-				return err
-			}
-			hub.Logger.Debugf("Created manifest for ingress: %s", ing.Name)
-		}
-	case "":
-		fmt.Println("ALL. to be implemented")
-	default:
-		return fmt.Errorf("Invalid resource type %s selected", cliCtx.String("resource"))
-	}
+	// switch cliCtx.String("resource") {
+	// case "deployment":
+	// 	err := prepareResource(hub.Config.Deployments, cliCtx.String("name"), projectDir)
+	// 	if err != nil {
+	// 		return err
+	// 	}
+
+	// case "service":
+	// 	err := createDeployment(hub.Config.Deployments, cliCtx.String("name"), projectDir)
+	// 	if err != nil {
+	// 		return err
+	// 	}
+	// 	// Create services
+	// 	for _, svc := range hub.Config.Services {
+	// 		if cliCtx.String("name") != "" {
+	// 			if cliCtx.String("name") != svc.Name {
+	// 				continue
+	// 			}
+	// 		}
+	// 		err := utils.CreateResource(svc, projectDir)
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		hub.Logger.Debugf("Created manifest for service: %s", svc.Name)
+	// 	}
+	// case "ingress":
+	// 	err := createDeployment(hub.Config.Deployments, cliCtx.String("name"), projectDir)
+	// 	if err != nil {
+	// 		return err
+	// 	}
+	// default:
+	// 	return fmt.Errorf("Invalid resource type %s selected", cliCtx.String("resource"))
+	// }
 	return nil
 }
