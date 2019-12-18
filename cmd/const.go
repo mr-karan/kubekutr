@@ -1,15 +1,8 @@
 package cmd
 
-const (
-	BaseDir         = "base"
-	DeploymentsDir  = "deployments"
-	ServicesDir     = "services"
-	IngressesDir    = "ingresses"
-	StatefulsetsDir = "statefulsets"
-	RBACDir         = "rbac"
-)
+import "zerodha.tech/janus/models"
 
 var (
 	// parentPaths = []string{BaseDir}
-	subPaths = []string{DeploymentsDir, StatefulsetsDir, ServicesDir, RBACDir, IngressesDir}
+	subPaths = []string{models.DeploymentsDir, models.StatefulsetsDir, models.ServicesDir, models.RBACDir, models.IngressesDir}
 )

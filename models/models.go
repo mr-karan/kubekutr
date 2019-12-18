@@ -44,3 +44,15 @@ type IngressPath struct {
 	Service string `koanf:"service"`
 	Port    string `koanf:"port"`
 }
+
+// Resource is a set of common actions performed on Resource Types
+type Resource interface {
+	GetMetaData() ResourceMeta
+}
+
+type ResourceMeta struct {
+	Name         string
+	Config       map[string]interface{}
+	TemplatePath string
+	ManifestPath string
+}

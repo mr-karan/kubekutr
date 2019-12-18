@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"path/filepath"
 
 	"github.com/urfave/cli"
 	models "zerodha.tech/janus/models"
@@ -55,7 +54,7 @@ func (hub *Hub) create(cliCtx *cli.Context) error {
 					continue
 				}
 			}
-			err := loadDeployment(dep, filepath.Join(projectDir, "base", "deployments"))
+			err := utils.CreateResource(dep, projectDir)
 			if err != nil {
 				return err
 			}
@@ -69,7 +68,7 @@ func (hub *Hub) create(cliCtx *cli.Context) error {
 					continue
 				}
 			}
-			err := loadService(svc, filepath.Join(projectDir, "base", "services"))
+			err := utils.CreateResource(svc, projectDir)
 			if err != nil {
 				return err
 			}
@@ -83,7 +82,7 @@ func (hub *Hub) create(cliCtx *cli.Context) error {
 					continue
 				}
 			}
-			err := loadIngress(ing, filepath.Join(projectDir, "base", "ingresses"))
+			err := utils.CreateResource(ing, projectDir)
 			if err != nil {
 				return err
 			}
