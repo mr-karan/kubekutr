@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{.Name}}
+  labels:
+    app.kubernetes.io/component: {{.Name}}
+spec:
+  replicas: {{.Replicas}}
+  serviceName: {{.ServiceHeadless}}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: {{.Name}}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: {{.Name}}
+    spec:
+        {{- if .initContainers}}
+        initContainers:
+        - name: {{.Name}}
+          image: {{.Image}}
+          command: {{.Command}}
+        {{- end}}
+      containers:
+      - name: {{.Name}}
+        image: {{.Image}}
+        ports:
+        - containerPort: {{.PortInt}}
+        volumeMounts:
+        - mountPath: {{.Mount}}
+          name: {{.Name}}
+      volumes:
+      - name: {{.Name}}
+        persistentVolumeClaim:
+          claimName: {{.PVCName}}

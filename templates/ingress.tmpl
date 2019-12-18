@@ -1,0 +1,19 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{.Name}}
+  labels:
+    app.kubernetes.io/component: {{.Name}}
+  annotations:
+    kubernetes.io/ingress.class: {{.IngressClass}}
+spec:
+  rules:
+    - http:
+        paths:
+          {{-range .Paths}}
+          - path: {{.Path}}
+            backend:
+              serviceName: {{.Service}}
+              servicePort: {{.Port}}
+          {{-end}}
