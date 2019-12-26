@@ -6,24 +6,26 @@
 
 [x] Selective resource creation
 
-[ ] Cleanup and modularise resource creation
+[x] Cleanup and modularise resource creation
 
-[ ] Standardise labels (perhaps take it from config)
+[x] Standardise labels (perhaps take it from config)
 
-[ ] Annotation for ingress
+[x] Annotation for ingress
 
-[ ] Stuffbin
-
-[ ] RBAC resources manifests
+[x] Stuffbin
 
 [ ] Better comments and logging
 
+[ ] Full config.toml.sample
+
+[ ] Release/Readme
+
 ## Commands
 
-[x] `janus -c CONFIG_PATH scaffold -n PROJECT_NAME`
-
-[x] `janus -c CONFIG_PATH create -r RESOURCE_TYPE -n NAME -o OUTPUT_PATH`
+[x] `kubekutr -c CONFIG_PATH scaffold -o PROJECT_DIR`
 
 ## Future
 
 [ ] Add output to stdout
+[ ] RBAC resources manifests
+[ ] More resources and specs

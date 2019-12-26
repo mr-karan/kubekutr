@@ -1,21 +1,24 @@
 package cmd
 
 import (
-	models "zerodha.tech/janus/models"
-	"zerodha.tech/janus/utils"
+	"github.com/knadh/stuffbin"
+	models "zerodha.tech/kubekutr/models"
+	"zerodha.tech/kubekutr/utils"
 )
 
-func prepareResources(resources []models.Resource, projectDir string) error {
+func prepareResources(resources []models.Resource, projectDir string, fs stuffbin.FileSystem) error {
 	for _, r := range resources {
-		// if name != "" {
-		// 	if name != r.GetMetaData().Name {
-		// 		continue
-		// 	}
-		// }
-		err := utils.CreateResource(r, projectDir)
+		err := utils.CreateResource(r, projectDir, fs)
 		if err != nil {
 			return err
 		}
 	}
 	return nil
+}
+
+func matchResource(input string, existing string) bool {
+	if input == existing {
+		return true
+	}
+	return false
 }

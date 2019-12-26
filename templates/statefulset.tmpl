@@ -15,21 +15,15 @@ spec:
       labels:
         app.kubernetes.io/component: {{.Name}}
     spec:
-        {{- if .initContainers}}
-        initContainers:
-        - name: {{.Name}}
-          image: {{.Image}}
-          command: {{.Command}}
-        {{- end}}
       containers:
       - name: {{.Name}}
         image: {{.Image}}
         ports:
         - containerPort: {{.PortInt}}
         volumeMounts:
-        - mountPath: {{.Mount}}
-          name: {{.Name}}
+        - mountPath: {{.MountPath}}
+          name: {{.VolMountName}}
       volumes:
-      - name: {{.Name}}
+      - name: {{.VolMountName}}
         persistentVolumeClaim:
           claimName: {{.PVCName}}

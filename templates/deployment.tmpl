@@ -2,17 +2,25 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Name }}
+  {{- if .Labels}}
   labels:
-    app.kubernetes.io/component: {{.Name}}
+    {{- range .Labels}}
+    {{.Label}}
+    {{- end}}
+  {{- end}}
 spec:
   replicas: {{.Replicas}}
   selector:
     matchLabels:
-        app.kubernetes.io/component: {{.Name}}
+      {{- range .Labels}}
+      {{.Label}}
+      {{- end}}
   template:
     metadata:
       labels:
-        app.kubernetes.io/component: {{.Name}}
+        {{- range .Labels}}
+        {{.Label}}
+        {{- end}}
     spec:
       containers:
       {{- range .Containers}}
@@ -34,15 +42,11 @@ spec:
           - secretRef:
               name: {{.EnvSecret}}
           {{- end}}
-          {{- if .ConfigMapName}}
-          volumeMounts:
-          - mountPath: {{.ConfigMount}}
-            name: {{.ConfigVolName}}
+          {{- if .EnvVars}}
+          env:
+          {{- range .EnvVars}}
+          - name: {{.EnvVars.Name}}
+            value: {{.EnvVars.Value}}
           {{- end}}
-      {{- end}}
-      {{- if .ConfigMount}}
-      volumes:
-        - name: {{.ConfigVolName}}
-          configMap:
-            name: {{.ConfigMapName}}
+          {{- end}}
       {{- end}}

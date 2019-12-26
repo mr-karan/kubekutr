@@ -7,7 +7,7 @@ import (
 	"github.com/knadh/koanf/parsers/toml"
 	"github.com/knadh/koanf/providers/file"
 	"github.com/urfave/cli"
-	"zerodha.tech/janus/models"
+	"zerodha.tech/kubekutr/models"
 )
 
 // initConfig initializes the app's configuration manager.

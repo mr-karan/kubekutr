@@ -3,9 +3,10 @@ package main
 import (
 	"os"
 
+	"github.com/knadh/stuffbin"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	"zerodha.tech/janus/cmd"
+	"zerodha.tech/kubekutr/cmd"
 )
 
 var (
@@ -30,17 +31,26 @@ func initLogger(verbose bool) *logrus.Logger {
 	return logger
 }
 
+// initFileSystem initializes the stuffbin FileSystem to provide
+// access to bunded static assets to the app.
+func initFileSystem(binPath string) (stuffbin.FileSystem, error) {
+	fs, err := stuffbin.UnStuff(os.Args[0])
+	if err != nil {
+		return nil, err
+	}
+	return fs, nil
+}
+
 func main() {
 	// cli.AppHelpTemplate = AppHelpTemplate
 	// cli.CommandHelpTemplate = CommandHelpTemplate
 	// cli.SubcommandHelpTemplate = SubcommandHelpTemplate
 	// Intialize new CLI app
 	app := cli.NewApp()
-	app.Name = "janus"
-	app.Usage = "Dead easy deployment tool"
+	app.Name = "kubekutr"
+	app.Usage = "Cookie cutter for Kubernetes resource manifests"
 	app.Version = buildVersion
-	app.Author = "Karan Sharma"
-	app.Email = "hello@mrkaran.dev"
+	app.Author = "Karan Sharma @mrkaran"
 	// Register command line args.
 	app.Flags = []cli.Flag{
 		cli.BoolFlag{
@@ -53,16 +63,22 @@ func main() {
 	var (
 		logger = initLogger(true)
 	)
+	// Initialize the static file system into which all
+	// required static assets (.css, .js files etc.) are loaded.
+	fs, err := initFileSystem(os.Args[0])
+	if err != nil {
+		logger.Errorf("error reading stuffed binary: %v", err)
+	}
 	// Initialize hub.
-	hub := cmd.NewHub(logger, buildVersion)
+	hub := cmd.NewHub(logger, fs, buildVersion)
+
 	// Register commands.
 	app.Commands = []cli.Command{
 		hub.ScaffoldProject(hub.Config),
-		hub.CreateResource(hub.Config),
 	}
 	// Run the app.
-	hub.Logger.Info("Starting janus...")
-	err := app.Run(os.Args)
+	hub.Logger.Info("Starting kubekutr...")
+	err = app.Run(os.Args)
 	if err != nil {
 		logger.Errorf("Something terrbily went wrong: %s", err)
 	}

@@ -8,6 +8,7 @@ func (dep Deployment) GetMetaData() ResourceMeta {
 			"Name":       dep.Name,
 			"Replicas":   dep.Replicas,
 			"Containers": dep.Containers,
+			"Labels":     dep.Labels,
 		},
 		ManifestPath: DeploymentsDir,
 	}

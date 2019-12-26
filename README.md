@@ -1,4 +1,4 @@
-# janus
+# kubekutr
 
 _Cookie cutter for Kubernetes resource manifests._
 

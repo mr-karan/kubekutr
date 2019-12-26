@@ -1,21 +1,24 @@
 package cmd
 
 import (
+	"github.com/knadh/stuffbin"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	models "zerodha.tech/janus/models"
+	models "zerodha.tech/kubekutr/models"
 )
 
 // Hub represents the structure for all app wide functions and structs
 type Hub struct {
 	Logger  *logrus.Logger
 	Config  models.Config
+	Fs      stuffbin.FileSystem
 	Version string
 }
 
-func NewHub(logger *logrus.Logger, buildVersion string) *Hub {
+func NewHub(logger *logrus.Logger, fs stuffbin.FileSystem, buildVersion string) *Hub {
 	hub := &Hub{
 		Logger:  logger,
+		Fs:      fs,
 		Version: buildVersion,
 	}
 	return hub

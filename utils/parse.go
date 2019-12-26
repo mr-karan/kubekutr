@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"text/template"
+
+	"github.com/knadh/stuffbin"
 )
 
-func parse(src string, dest string, config map[string]interface{}) error {
-	t, err := template.ParseFiles(src)
+func parse(src string, dest string, config map[string]interface{}, fs stuffbin.FileSystem) error {
+	t, err := stuffbin.ParseTemplates(nil, fs, src)
+
 	if err != nil {
 		return err
 	}
@@ -26,9 +28,9 @@ func parse(src string, dest string, config map[string]interface{}) error {
 	return nil
 }
 
-func saveResource(template string, name string, dest string, config map[string]interface{}) error {
+func saveResource(template string, name string, dest string, config map[string]interface{}, fs stuffbin.FileSystem) error {
 	// parse template file and output yaml
-	err := parse(template, filepath.Join(dest, fmt.Sprintf("%s.yml", name)), config)
+	err := parse(template, filepath.Join(dest, fmt.Sprintf("%s.yml", name)), config, fs)
 	if err != nil {
 		return err
 	}

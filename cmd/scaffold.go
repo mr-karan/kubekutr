@@ -3,8 +3,8 @@ package cmd
 import (
 	"github.com/c-bata/go-prompt"
 	"github.com/urfave/cli"
-	"zerodha.tech/janus/models"
-	"zerodha.tech/janus/utils"
+	"zerodha.tech/kubekutr/models"
+	"zerodha.tech/kubekutr/utils"
 )
 
 var emptyComplete = func(prompt.Document) []prompt.Suggest { return []prompt.Suggest{} }
@@ -45,6 +45,5 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 	for _, ing := range hub.Config.Ingresses {
 		resources = append(resources, models.Resource(ing))
 	}
-	prepareResources(resources, projectDir)
-	return nil
+	return prepareResources(resources, projectDir, hub.Fs)
 }

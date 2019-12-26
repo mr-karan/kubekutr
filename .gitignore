@@ -15,9 +15,9 @@
 vendor/
 
 # App Specific
-.janus
+.kubekutr
 .env
 config.toml
-janus
+kubekutr
 
 .git-OLD

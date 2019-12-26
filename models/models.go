@@ -2,9 +2,10 @@ package models
 
 // Config represents the structure to hold configuration loaded from an external data source.
 type Config struct {
-	Deployments []Deployment `koanf:"deployments"`
-	Services    []Service    `koanf:"services"`
-	Ingresses   []Ingress    `koanf:"ingresses"`
+	Deployments  []Deployment  `koanf:"deployments"`
+	Services     []Service     `koanf:"services"`
+	Ingresses    []Ingress     `koanf:"ingresses"`
+	StatefulSets []StatefulSet `koanf:"statefulsets"`
 }
 
 // Deployment represents
@@ -12,18 +13,20 @@ type Deployment struct {
 	Name       string      `koanf:"name"`
 	Replicas   string      `koanf:"replicas"`
 	Containers []Container `koanf:"containers"`
+	Labels     []Label     `koanf:"labels"`
 }
 
 // Container represents
 type Container struct {
-	Name          string `koanf:"name"`
-	Image         string `koanf:"image"`
-	EnvSecret     string `koanf:"envSecret"`
-	Container     string `koanf:"container"`
-	PortInt       string `koanf:"port"`
-	Command       string `koanf:"command"`
-	Args          string `koanf:"arg"`
-	ConfigMapName string `koanf:"configmap"`
+	Name          string   `koanf:"name"`
+	Image         string   `koanf:"image"`
+	EnvSecret     string   `koanf:"envSecret"`
+	EnvVars       []EnvVar `koanf:"envVars"`
+	Container     string   `koanf:"container"`
+	PortInt       string   `koanf:"port"`
+	Command       string   `koanf:"command"`
+	Args          string   `koanf:"arg"`
+	ConfigMapName string   `koanf:"configmap"`
 }
 
 type Service struct {
@@ -34,9 +37,17 @@ type Service struct {
 }
 
 type Ingress struct {
-	Name  string        `koanf:"name"`
-	Class string        `koanf:"class"`
-	Paths []IngressPath `koanf:"ingressPaths"`
+	Name        string        `koanf:"name"`
+	Class       string        `koanf:"class"`
+	Paths       []IngressPath `koanf:"ingressPaths"`
+	Annotations []Annotation  `koanf:"annotations"`
+}
+
+type StatefulSet struct {
+	Name        string        `koanf:"name"`
+	Class       string        `koanf:"class"`
+	Paths       []IngressPath `koanf:"ingressPaths"`
+	Annotations []Annotation  `koanf:"annotations"`
 }
 
 type IngressPath struct {
@@ -55,4 +66,17 @@ type ResourceMeta struct {
 	Config       map[string]interface{}
 	TemplatePath string
 	ManifestPath string
+}
+
+type Annotation struct {
+	Annotation string `koanf:"annotation"`
+}
+
+type Label struct {
+	Label string `koanf:"label"`
+}
+
+type EnvVar struct {
+	Name  string `koanf:"name"`
+	Value string `koanf:"value"`
 }

@@ -1,6 +1,6 @@
 package cmd
 
-import "zerodha.tech/janus/models"
+import "zerodha.tech/kubekutr/models"
 
 var (
 	// parentPaths = []string{BaseDir}
