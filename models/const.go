@@ -8,7 +8,6 @@ const (
 	ServicesDir     = "services"
 	IngressesDir    = "ingresses"
 	StatefulsetsDir = "statefulsets"
-	RBACDir         = "rbac"
 	TemplatesDir    = "templates"
 )
 

@@ -14,18 +14,14 @@
 
 [x] Stuffbin
 
-[ ] Better comments and logging
+[x] Better comments and logging
 
-[ ] Full config.toml.sample
+[x] Full config.toml.sample
 
-[ ] Release/Readme
-
-## Commands
-
-[x] `kubekutr -c CONFIG_PATH scaffold -o PROJECT_DIR`
-
-## Future
+[x] Release/Readme
 
 [ ] Add output to stdout
+
 [ ] RBAC resources manifests
+
 [ ] More resources and specs

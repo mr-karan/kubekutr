@@ -64,7 +64,5 @@ spec:
       volumes:
         {{- range .Volumes}}
         - name: {{.Name}}
-          configMap:
-            name: {{.ConfigMapName}}
         {{- end}}
       {{- end}}

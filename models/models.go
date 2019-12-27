@@ -110,6 +110,5 @@ type VolumeMount struct {
 // Volume represnts the option for Volume attached to a pod. Currently only supports
 // ConfigMap as the source.
 type Volume struct {
-	Name          string `koanf:"name"`
-	ConfigMapName string `koanf:"cmName"`
+	Name string `koanf:"name"`
 }
