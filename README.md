@@ -3,17 +3,17 @@
 <img src="logo.png" alt="drawing" width="400"/>
 <!-- ![](logo.png) -->
 
-_Cookie cutter for Kubernetes resource manifests_
+🍪✂️ _Cookie cutter for Kubernetes resource manifests_
 
-`kubekutr` lets you scaffold a [bespoke] configuration for Kubernetes resource manifests with an _opinionated_ GitOps directory structure. `kubekutr` is ideally meant to be used in combination with [kustomize](). 
+`kubekutr` lets you quickly scaffold a [bespoke](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#bespoke-configuration) configuration for Kubernetes resource manifests with an _opinionated_ GitOps directory structure. `kubekutr` is ideally meant to be used in combination with [kustomize](https://github.com/kubernetes-sigs/kustomize). 
 
 ## Motivation
 
-`kustomize` is a great tool when it comes to declarative application management for manifests. There still exists a lot of manual scaffolding to create a `base` which defines your application state. `kubekutr` aims to solve the issue of writing these manifests manually by providing a very simple Go template rendering engine. 
+`kustomize` is a great tool when it comes to declarative application management for manifests. There still exists a lot of manual scaffolding to create a [base](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#base) which defines your application state. `kubekutr` aims to solve the issue of writing these manifests manually by providing a very simple Go template rendering engine. 
 
 ### Non Goals
 
-`kubekutr` doesn't aim to provide all 1000s of options of templating `yaml` files. More users mean every user will want to customise the `yaml` in some way or the other and this is where `kustomize` comes into picture. Users of `kubekutr` are encourage to use `kustomize` to create _patches_ on top of `bases` to apply any kind of customisation. `kubekutr`'s **only** goal is to create the _base_ directory.
+`kubekutr` doesn't aim to provide all 1000s of options of templating `yaml` files. More users mean every user will want to customise the `yaml` in some way or the other and this is where `kustomize` comes into picture. Users of `kubekutr` are encourage to use `kustomize` to create _variants_ on top of `bases` to apply any kind of customisation. `kubekutr`'s **only** goal is to create the _base_ directory.
 
 ## Usage
 
@@ -89,7 +89,7 @@ mydir
     -   **annotations**:
         - **name**:  Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata
 
-### Improvements
+## Contributing
 
 This is still an alpha release. For a full list of things to improve, see unchecked items in [TODO](TODO.md).
 Contributions welcome!
