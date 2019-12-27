@@ -3,8 +3,12 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{.Name}}
+  {{- if .Labels}}
   labels:
-    app.kubernetes.io/component: {{.Name}}
+    {{- range .Labels}}
+    {{.Name}}
+    {{- end}}
+  {{- end}}
   {{- if .Annotations}}
   annotations:
     {{- range .Annotations}}

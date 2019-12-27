@@ -2,28 +2,61 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{.Name}}
-  labels:
-    app.kubernetes.io/component: {{.Name}}
 spec:
-  replicas: {{.Replicas}}
-  serviceName: {{.ServiceHeadless}}
   selector:
     matchLabels:
-      app.kubernetes.io/component: {{.Name}}
+      {{- range .Labels}}
+      {{.Name}}
+      {{- end}}
+  serviceName: {{.ServiceName}}
   template:
     metadata:
       labels:
-        app.kubernetes.io/component: {{.Name}}
+        {{- range .Labels}}
+        {{.Name}}
+        {{- end}}
     spec:
       containers:
-      - name: {{.Name}}
-        image: {{.Image}}
+      {{- range .Containers}}
+      - image: {{.Image}}
+        name: {{.Name}}
+        {{- if .Command}}
+        command: {{.Command}}
+        {{- end}}
+        {{- if .Args}}
+        args: {{.Args}}
+        {{- end}}
+        {{- if .PortInt}}
         ports:
         - containerPort: {{.PortInt}}
+          name: {{.PortName}}
+        {{- end}}
+        {{- if .EnvVars}}
+        env:
+        {{- range .EnvVars}}
+        - name: {{.Name}}
+          value: {{.Value}}
+        {{- end}}
+        {{- end}}
+        {{- if .EnvSecret}}
+        envFrom:
+        - secretRef:
+            name: {{.EnvSecret}}
+        {{- end}}
+        {{- if .VolumeMounts}}
         volumeMounts:
+        {{- range .VolumeMounts}}
         - mountPath: {{.MountPath}}
-          name: {{.VolMountName}}
+          name: {{.Name}}
+          {{- if .SubPath}}
+          subPath: {{.SubPath}}
+          {{- end}}
+        {{- end}}
+        {{- end}}
+      {{- end}}
+      {{- if .Volumes}}
       volumes:
-      - name: {{.VolMountName}}
-        persistentVolumeClaim:
-          claimName: {{.PVCName}}
+        {{- range .Volumes}}
+        - name: {{.Name}}
+        {{- end}}
+      {{- end}}
