@@ -7,7 +7,7 @@ import (
 	"zerodha.tech/kubekutr/models"
 )
 
-// CreateResource ...
+// CreateResource fetches metadata about the resource and produces the resultant manifest.
 func CreateResource(resource models.Resource, rootDir string, fs stuffbin.FileSystem) error {
 	var (
 		template = resource.GetMetaData().TemplatePath

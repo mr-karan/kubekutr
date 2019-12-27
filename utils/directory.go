@@ -13,14 +13,16 @@ func GetRootDir(dest string) string {
 	return filepath.Join(dest)
 }
 
-// CreateGitopsDirectory ...
+// CreateGitopsDirectory creates an opinionated directory structure to organize
+// resource manifests efficiently. The directory is ideally to be used with Kustomize
+// as a "base".
 func CreateGitopsDirectory(subPaths []string, parentDir string) {
 	for _, p := range subPaths {
 		os.MkdirAll(filepath.Join(parentDir, "base", p), os.ModePerm)
 	}
 }
 
-// LookupGitopsDirectory ...
+// LookupGitopsDirectory checks if a directory with the same path already exists or not.
 func LookupGitopsDirectory(subPaths []string, parentDir string) error {
 	for _, sub := range subPaths {
 		if _, err := os.Stat(filepath.Join(parentDir, "base", sub)); os.IsNotExist(err) {

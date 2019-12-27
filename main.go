@@ -10,13 +10,13 @@ import (
 )
 
 var (
-	// Version of the build. This is injected at build-time.
+	// Version and date of the build. This is injected at build-time.
 	buildVersion = "unknown"
 	buildDate    = "unknown"
 )
 
+// initLogger initializes logger
 func initLogger(verbose bool) *logrus.Logger {
-	// Initialize logger
 	logger := logrus.New()
 	logger.SetFormatter(&logrus.TextFormatter{
 		FullTimestamp: true,
@@ -42,9 +42,6 @@ func initFileSystem(binPath string) (stuffbin.FileSystem, error) {
 }
 
 func main() {
-	// cli.AppHelpTemplate = AppHelpTemplate
-	// cli.CommandHelpTemplate = CommandHelpTemplate
-	// cli.SubcommandHelpTemplate = SubcommandHelpTemplate
 	// Intialize new CLI app
 	app := cli.NewApp()
 	app.Name = "kubekutr"

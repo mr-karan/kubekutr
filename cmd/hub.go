@@ -7,7 +7,7 @@ import (
 	models "zerodha.tech/kubekutr/models"
 )
 
-// Hub represents the structure for all app wide functions and structs
+// Hub represents the structure for all app wide functions and structs.
 type Hub struct {
 	Logger  *logrus.Logger
 	Config  models.Config
@@ -15,6 +15,7 @@ type Hub struct {
 	Version string
 }
 
+// NewHub initializes an instance of Hub which holds app wide configuration.
 func NewHub(logger *logrus.Logger, fs stuffbin.FileSystem, buildVersion string) *Hub {
 	hub := &Hub{
 		Logger:  logger,
@@ -25,6 +26,7 @@ func NewHub(logger *logrus.Logger, fs stuffbin.FileSystem, buildVersion string) 
 }
 
 // initApp acts like a middleware to load app managers with Hub before running any command.
+// Use this middleware to perform any action before the command is run.
 func (hub *Hub) initApp(fn cli.ActionFunc) cli.ActionFunc {
 	return func(c *cli.Context) error {
 		// Initialize config.

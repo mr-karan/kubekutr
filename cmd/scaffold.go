@@ -1,20 +1,17 @@
 package cmd
 
 import (
-	"github.com/c-bata/go-prompt"
 	"github.com/urfave/cli"
 	"zerodha.tech/kubekutr/models"
 	"zerodha.tech/kubekutr/utils"
 )
-
-var emptyComplete = func(prompt.Document) []prompt.Suggest { return []prompt.Suggest{} }
 
 // ScaffoldProject creates an opinioated GitOps structure for Kubernetes manifests.
 func (hub *Hub) ScaffoldProject(config models.Config) cli.Command {
 	return cli.Command{
 		Name:    "scaffold",
 		Aliases: []string{"s"},
-		Usage:   "Scaffold a new project with opinionated gitops structure",
+		Usage:   "Scaffold a new project with gitops structure",
 		Action:  hub.initApp(hub.scaffold),
 		Flags: []cli.Flag{
 			cli.StringFlag{
@@ -36,7 +33,6 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 	for _, dep := range hub.Config.Deployments {
 		resources = append(resources, models.Resource(dep))
 	}
-
 	// Create services
 	for _, svc := range hub.Config.Services {
 		resources = append(resources, models.Resource(svc))
@@ -44,6 +40,10 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 	// Create ingress
 	for _, ing := range hub.Config.Ingresses {
 		resources = append(resources, models.Resource(ing))
+	}
+	// Create statefulset
+	for _, ss := range hub.Config.StatefulSets {
+		resources = append(resources, models.Resource(ss))
 	}
 	return prepareResources(resources, projectDir, hub.Fs)
 }

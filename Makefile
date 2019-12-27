@@ -10,7 +10,7 @@ VERSION := ${HASH} (${COMMIT_DATE})
 STATIC := ./templates:/templates
 
 build:
-	go build -o ${BIN} -ldflags="-X 'main.version=${VERSION}' -X 'main.date=${BUILD_DATE}'"
+	go build -o ${BIN} -ldflags="-X 'main.buildVersion=${VERSION}' -X 'main.buildDate=${BUILD_DATE}'"
 	stuffbin -a stuff -in ${BIN} -out ${BIN} ${STATIC}
 
 run:
