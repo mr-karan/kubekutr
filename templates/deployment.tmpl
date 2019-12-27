@@ -5,7 +5,7 @@ metadata:
   {{- if .Labels}}
   labels:
     {{- range .Labels}}
-    {{.Label}}
+    {{.Name}}
     {{- end}}
   {{- end}}
 spec:
@@ -13,13 +13,13 @@ spec:
   selector:
     matchLabels:
       {{- range .Labels}}
-      {{.Label}}
+      {{.Name}}
       {{- end}}
   template:
     metadata:
       labels:
         {{- range .Labels}}
-        {{.Label}}
+        {{.Name}}
         {{- end}}
     spec:
       containers:
@@ -45,8 +45,26 @@ spec:
           {{- if .EnvVars}}
           env:
           {{- range .EnvVars}}
-          - name: {{.EnvVars.Name}}
-            value: {{.EnvVars.Value}}
+          - name: {{.Name}}
+            value: {{.Value}}
           {{- end}}
           {{- end}}
+          {{- if .VolumeMounts}}
+          volumeMounts:
+          {{- range .VolumeMounts}}
+          - mountPath: {{.MountPath}}
+            name: {{.Name}}
+            {{- if .SubPath}}
+            subPath: {{.SubPath}}
+            {{- end}}
+          {{- end}}
+          {{- end}}
+      {{- end}}
+      {{- if .Volumes}}
+      volumes:
+        {{- range .Volumes}}
+        - name: {{.Name}}
+          configMap:
+            name: {{.ConfigMapName}}
+        {{- end}}
       {{- end}}

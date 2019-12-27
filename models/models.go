@@ -14,19 +14,21 @@ type Deployment struct {
 	Replicas   string      `koanf:"replicas"`
 	Containers []Container `koanf:"containers"`
 	Labels     []Label     `koanf:"labels"`
+	Volumes    []Volume    `koanf:"volumes"`
 }
 
 // Container represents configuration options for the Container spec in a Pod definition.
 type Container struct {
-	Name          string   `koanf:"name"`
-	Image         string   `koanf:"image"`
-	EnvSecret     string   `koanf:"envSecret"`
-	EnvVars       []EnvVar `koanf:"envVars"`
-	Container     string   `koanf:"container"`
-	PortInt       string   `koanf:"port"`
-	Command       string   `koanf:"command"`
-	Args          string   `koanf:"arg"`
-	ConfigMapName string   `koanf:"configmap"`
+	Name         string        `koanf:"name"`
+	Image        string        `koanf:"image"`
+	EnvSecret    string        `koanf:"envSecret"`
+	EnvVars      []EnvVar      `koanf:"envVars"`
+	Container    string        `koanf:"container"`
+	PortInt      string        `koanf:"portInt"`
+	PortName     string        `koanf:"portName"`
+	Command      string        `koanf:"command"`
+	Args         string        `koanf:"args"`
+	VolumeMounts []VolumeMount `koanf:"volumeMounts"`
 }
 
 // Service represents configuration options for Service spec.
@@ -80,11 +82,25 @@ type Annotation struct {
 
 // Label represents the kv pair for a label.
 type Label struct {
-	Label string `koanf:"label"`
+	Name string `koanf:"name"`
 }
 
 // EnvVar represents the env variables to be used in Pod definition.
 type EnvVar struct {
 	Name  string `koanf:"name"`
 	Value string `koanf:"value"`
+}
+
+// VolumeMount represents the options for mounting volume in a pod.
+type VolumeMount struct {
+	MountPath string `koanf:"mountPath"`
+	SubPath   string `koanf:"subPath"`
+	Name      string `koanf:"name"`
+}
+
+// Volume represnts the option for Volume attached to a pod. Currently only supports
+// ConfigMap as the source.
+type Volume struct {
+	Name          string `koanf:"name"`
+	ConfigMapName string `koanf:"cmName"`
 }
