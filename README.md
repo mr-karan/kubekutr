@@ -23,7 +23,7 @@
 $ kubekutr -c config.toml scaffold -o myapp
 
 # `myapp` is created with the GitOps structure
-mydir
+myapp
 `-- base
     |-- deployments
     |   `-- app.yml
