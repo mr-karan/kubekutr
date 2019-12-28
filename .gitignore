@@ -21,4 +21,4 @@ vendor/
 config.toml
 kubekutr
 
-.git-OLD
+.DS_Store

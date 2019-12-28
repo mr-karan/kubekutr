@@ -20,3 +20,4 @@ archives:
       - config.sample.toml
       - README.md
       - LICENSE
+      - templates/*
