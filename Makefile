@@ -1,4 +1,4 @@
-.PHONY : build run fresh test clean
+.PHONY : build run fresh test clean pack-releases
 
 BIN := kubekutr
 
@@ -24,3 +24,9 @@ test:
 clean:
 	go clean
 	- rm -f ${BIN}
+
+# pack-releases runns stuffbin packing on a given list of
+# binaries. This is used with goreleaser for packing
+# release builds for cross-build targets.
+pack-releases:
+	$(foreach var,$(RELEASE_BUILDS),stuffbin -a stuff -in ${var} -out ${var} ${STATIC} $(var);)
