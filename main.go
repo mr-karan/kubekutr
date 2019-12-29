@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/knadh/stuffbin"
 	"github.com/sirupsen/logrus"
@@ -34,7 +35,12 @@ func initLogger(verbose bool) *logrus.Logger {
 // initFileSystem initializes the stuffbin FileSystem to provide
 // access to bunded static assets to the app.
 func initFileSystem(binPath string) (stuffbin.FileSystem, error) {
-	fs, err := stuffbin.UnStuff(os.Args[0])
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+	fs, err := stuffbin.UnStuff(filepath.Join(exPath, filepath.Base(os.Args[0])))
 	if err != nil {
 		return nil, err
 	}
