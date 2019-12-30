@@ -11,7 +11,7 @@ deployments:
         portInt: 3000
         portName: app-port
         command: '["./myapp"]'
-        args: '[''--config'',''--hello'']'
+        args: '["--config", "--hello"]'
         envVars:
           - name: hello
             value: iamsecret
@@ -35,7 +35,7 @@ services:
 ingresses:
   - name: app
     annotations:
-      - name: 'alb.ingress.kubernetes.io/healthy-threshold-count: ''2'''
+      - name: 'alb.ingress.kubernetes.io/healthy-threshold-count: "2"'
     ingressPaths:
       - path: /503
         service: app
