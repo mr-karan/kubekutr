@@ -20,12 +20,14 @@
 
 - [X] Release/Readme
 
+- [X] Add support for config in YAML
+
+- [x] Blogpost on a working example
+
 - [ ] Add output to stdout
 
 - [ ] RBAC resources manifests
 
 - [ ] More resources and specs
 
-- [X] Add support for config in YAML
-
-- [ ] Blogpost on a working example
+- [ ] Generate `kustomization.yaml` too
