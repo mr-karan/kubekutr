@@ -28,9 +28,3 @@ func initConfig(c *cli.Context) (models.Config, error) {
 	err := ko.Unmarshal("", &cfg)
 	return cfg, err
 }
-
-func failOnReadConfigErr(err error) {
-	if err != nil {
-		log.Fatalf("error reading config: %v.", err)
-	}
-}
