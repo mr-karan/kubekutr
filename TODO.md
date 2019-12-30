@@ -1,27 +1,27 @@
-[x] Cover all manifests for basic version
+- [X] Cover all manifests for basic version
 
-[x] Custom config path
+- [X] Custom config path
 
-[x] Dont hardcode filenames/resource types
+- [X] Dont hardcode filenames/resource types
 
-[x] Selective resource creation
+- [X] Selective resource creation
 
-[x] Cleanup and modularise resource creation
+- [X] Cleanup and modularise resource creation
 
-[x] Standardise labels (perhaps take it from config)
+- [X] Standardise labels (perhaps take it from config)
 
-[x] Annotation for ingress
+- [X] Annotation for ingress
 
-[x] Stuffbin
+- [X] Stuffbin
 
-[x] Better comments and logging
+- [X] Better comments and logging
 
-[x] Full config.toml.sample
+- [X] Full config.toml.sample
 
-[x] Release/Readme
+- [X] Release/Readme
 
-[ ] Add output to stdout
+- [ ] Add output to stdout
 
-[ ] RBAC resources manifests
+- [ ] RBAC resources manifests
 
-[ ] More resources and specs
+- [ ] More resources and specs
