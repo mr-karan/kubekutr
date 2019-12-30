@@ -25,3 +25,7 @@
 - [ ] RBAC resources manifests
 
 - [ ] More resources and specs
+
+- [ ] Add support for config in YAML
+
+- [ ] Blogpost on a working example
