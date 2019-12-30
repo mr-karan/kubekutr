@@ -16,7 +16,7 @@
 
 - [X] Better comments and logging
 
-- [X] Full config.toml.sample
+- [X] Full config.sample.yml
 
 - [X] Release/Readme
 
@@ -26,6 +26,6 @@
 
 - [ ] More resources and specs
 
-- [ ] Add support for config in YAML
+- [X] Add support for config in YAML
 
 - [ ] Blogpost on a working example

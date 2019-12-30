@@ -46,7 +46,7 @@ GLOBAL OPTIONS:
 ```bash
 # create a new base
 
-$ kubekutr -c config.toml scaffold -o myapp
+$ kubekutr -c config.yml scaffold -o myapp
 
 # `myapp` is created with the GitOps structure
 myapp
@@ -63,7 +63,7 @@ myapp
 
 ## Configuration
 
--   **[deployments]**
+-   **deployments**
 
     -   **name**: Name of the deployment
     -   **replicas**: Represents the number of replicas for a `Pod`
@@ -86,7 +86,7 @@ myapp
     -   **volumes**: List of volumes defined for a deployment
             - **name**: Name of Volume
 
--   **[statefulsets]**
+-   **statefulsets**
 
     -   **name**: Name of the statefulset
     -   **serviceName**: serviceName is the name of the service that governs this StatefulSet
@@ -104,7 +104,7 @@ myapp
     -   **selectors**:
         - **name**:  Route service traffic to pods with label keys and values matching this selector
 
--   **[ingresses]**
+-   **ingresses**
 
     -   **name**: Name of ingress
     -   **ingressPaths**

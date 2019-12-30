@@ -18,7 +18,7 @@ vendor/
 # App Specific
 .kubekutr
 .env
-config.toml
+config.yml
 kubekutr
 
 .DS_Store
