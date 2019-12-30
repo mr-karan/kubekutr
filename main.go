@@ -61,7 +61,7 @@ func main() {
 			Usage: "Enable verbose logging",
 		},
 		cli.StringSliceFlag{
-			Name: "config, c", Value: &cli.StringSlice{}, Usage: "path to one or more Nest TOML config files", TakesFile: true},
+			Name: "config, c", Value: &cli.StringSlice{}, Usage: "path to one or more config files", TakesFile: true},
 	}
 	var (
 		logger = initLogger(true)

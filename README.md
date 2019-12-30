@@ -17,6 +17,32 @@
 
 ## Usage
 
+```
+NAME:
+   kubekutr - Cookie cutter for Kubernetes resource manifests
+
+USAGE:
+   kubekutr [global options] command [command options] [arguments...]
+
+VERSION:
+   3445a6f (2019-12-30 09:03:24 +0530)
+
+AUTHOR:
+   Karan Sharma @mrkaran
+
+COMMANDS:
+   scaffold, s  Scaffold a new project with gitops structure
+   help, h      Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --verbose                 Enable verbose logging
+   --config value, -c value  path to one or more config files
+   --help, -h                show help
+   --version, -v             print the version
+```
+
+### Scaffold a new project
+
 ```bash
 # create a new base
 
@@ -35,7 +61,7 @@ myapp
         `-- app.yml
 ```
 
-### Configuration
+## Configuration
 
 -   **[deployments]**
 
