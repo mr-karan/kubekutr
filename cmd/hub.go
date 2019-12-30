@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"log"
+
 	"github.com/knadh/stuffbin"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
@@ -29,8 +31,12 @@ func NewHub(logger *logrus.Logger, fs stuffbin.FileSystem, buildVersion string) 
 // Use this middleware to perform any action before the command is run.
 func (hub *Hub) initApp(fn cli.ActionFunc) cli.ActionFunc {
 	return func(c *cli.Context) error {
+		var err error
 		// Initialize config.
-		hub.Config = initConfig(c)
+		hub.Config, err = initConfig(c)
+		if err != nil {
+			log.Fatalf("error while reading config: %v", err)
+		}
 		return fn(c)
 	}
 }

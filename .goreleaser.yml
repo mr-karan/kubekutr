@@ -20,6 +20,6 @@ builds:
 archives:
   - format: tar.gz
     files:
-      - config.sample.toml
+      - config.sample.yml
       - README.md
       - LICENSE
