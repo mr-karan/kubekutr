@@ -105,6 +105,7 @@ myapp
     -   **labels**: (reference above)
     -   **selectors**:
         - **name**:  Route service traffic to pods with label keys and values matching this selector
+    -   **headless**: (Default: `false`) If set to `true`, the service will have `.spec.clusterIP` set to `None`
 
 -   **ingresses**
 
