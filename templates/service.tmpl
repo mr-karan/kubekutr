@@ -14,6 +14,9 @@ spec:
       targetPort: {{.TargetPort}}
       protocol: TCP
   type: {{.Type}}
+  {{- if .Headless}}
+  clusterIP: None
+  {{- end}}
   {{- if .Selectors}}
   selector:
     {{- range .Selectors}}

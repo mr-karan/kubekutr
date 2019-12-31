@@ -10,6 +10,7 @@ func (svc Service) GetMetaData() ResourceMeta {
 			"TargetPort": svc.TargetPort,
 			"Type":       svc.Type,
 			"Labels":     svc.Labels,
+			"Headless":   svc.Headless,
 			"Selectors":  svc.Selectors,
 		},
 		ManifestPath: ServicesDir,

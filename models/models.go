@@ -46,6 +46,7 @@ type Service struct {
 	Port       string     `koanf:"port"`
 	TargetPort string     `koanf:"targetPort"`
 	Type       string     `koanf:"type"`
+	Headless   bool       `koanf:"headless"`
 	Labels     []Label    `koanf:"labels"`
 	Selectors  []Selector `koanf:"selectors"`
 }
