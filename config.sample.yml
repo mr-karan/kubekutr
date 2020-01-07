@@ -59,6 +59,6 @@ statefulsets:
             value: sample
         volumeMounts:
           - name: db-dir
-            mount: /var/lib/postgres
+            mountPath: /var/lib/postgres
     volumes:
       - name: db-dir

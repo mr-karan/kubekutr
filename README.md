@@ -94,7 +94,7 @@ myapp
     -   **serviceName**: serviceName is the name of the service that governs this StatefulSet
     -   **labels**: (reference above)
     -   **containers**: (reference above)
-    -   **volumes**:(reference above)
+    -   **volumes**: (reference above)
 
 -   **services**
 
