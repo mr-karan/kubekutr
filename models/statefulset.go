@@ -11,6 +11,6 @@ func (ss StatefulSet) GetMetaData() ResourceMeta {
 			"Containers":  ss.Containers,
 			"Volumes":     ss.Volumes,
 		},
-		ManifestPath: StatefulsetsDir,
+		Type: Statefulsets,
 	}
 }

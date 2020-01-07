@@ -11,6 +11,6 @@ func (dep Deployment) GetMetaData() ResourceMeta {
 			"Labels":     dep.Labels,
 			"Volumes":    dep.Volumes,
 		},
-		ManifestPath: DeploymentsDir,
+		Type: Deployments,
 	}
 }

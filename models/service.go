@@ -12,6 +12,6 @@ func (svc Service) GetMetaData() ResourceMeta {
 			"Labels":     svc.Labels,
 			"Selectors":  svc.Selectors,
 		},
-		ManifestPath: ServicesDir,
+		Type: Services,
 	}
 }

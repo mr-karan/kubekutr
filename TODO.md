@@ -31,3 +31,7 @@
 - [ ] More resources and specs
 
 - [ ] Generate `kustomization.yaml` too
+
+- [ ] Write tests
+
+- [ ] Support application based workload config

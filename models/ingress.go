@@ -11,6 +11,6 @@ func (ing Ingress) GetMetaData() ResourceMeta {
 			"Annotations": ing.Annotations,
 			"Labels":      ing.Labels,
 		},
-		ManifestPath: IngressesDir,
+		Type: Ingresses,
 	}
 }

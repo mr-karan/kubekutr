@@ -6,9 +6,9 @@ import (
 	"zerodha.tech/kubekutr/utils"
 )
 
-func prepareResources(resources []models.Resource, projectDir string, fs stuffbin.FileSystem) error {
+func prepareResources(resources []models.Resource, projectDir string, workload string, fs stuffbin.FileSystem) error {
 	for _, r := range resources {
-		err := utils.CreateResource(r, projectDir, fs)
+		err := utils.CreateResource(r, projectDir, workload, fs)
 		if err != nil {
 			return err
 		}
