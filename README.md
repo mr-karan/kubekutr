@@ -50,7 +50,7 @@ GLOBAL OPTIONS:
 
 $ kubekutr -c config.yml scaffold -o myproject
 
-# `myapp` is created with the GitOps structure
+# `myproject` is created with the GitOps structure
 myproject
 `-- base
     |-- app
