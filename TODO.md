@@ -24,6 +24,8 @@
 
 - [x] Blogpost on a working example
 
+- [x] Support application based workload config
+
 - [ ] Add output to stdout
 
 - [ ] RBAC resources manifests
@@ -33,5 +35,3 @@
 - [ ] Generate `kustomization.yaml` too
 
 - [ ] Write tests
-
-- [ ] Support application based workload config
