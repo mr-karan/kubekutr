@@ -1,63 +1,63 @@
-deployments:
+workloads:
   - name: app
-    replicas: 3
-    labels:
-      - name: 'service: app'
-      - name: 'tier: frontend'
-    containers:
+    deployments:
       - name: app
-        image: 'myapp:latest'
-        envSecret: myapp
-        portInt: 3000
-        portName: app-port
-        command: '["./myapp"]'
-        args: '["--config", "--hello"]'
-        envVars:
-          - name: hello
-            value: iamsecret
-        volumeMounts:
+        replicas: 3
+        labels:
+          - name: 'service: app'
+          - name: 'tier: frontend'
+        containers:
+          - name: app
+            image: 'myapp:latest'
+            envSecret: myapp
+            portInt: 3000
+            portName: app-port
+            command: '["./myapp"]'
+            args: '["--config", "--hello"]'
+            envVars:
+              - name: hello
+                value: iamsecret
+            volumeMounts:
+              - name: config-dir
+                mountPath: /etc/config
+                subPath: config.toml
+        volumes:
           - name: config-dir
-            mountPath: /etc/config
-            subPath: config.toml
-    volumes:
-      - name: config-dir
-
-services:
-  - name: app
-    type: NodePort
-    port: 7000
-    targetPort: 8000
-    labels:
-      - name: 'service: app'
-    selectors:
-      - name: 'tier: frontend'
-
-ingresses:
-  - name: app
-    annotations:
-      - name: 'alb.ingress.kubernetes.io/healthy-threshold-count: "2"'
-    ingressPaths:
-      - path: /503
-        service: app
-        port: use-annotation
-
-statefulsets:
-  - name: db
-    serviceName: db-headless
-    labels:
-      - name: 'service: postgres'
-      - name: 'tier: db'
-    containers:
-      - name: postgres
-        image: 'postgres:latest'
-        envSecret: postgres
-        portInt: 5432
-        portName: db-port
-        envVars:
-          - name: POSTGRES_DB
-            value: sample
-        volumeMounts:
+    services:
+      - name: app
+        type: NodePort
+        port: 7000
+        targetPort: 8000
+        labels:
+          - name: 'service: app'
+        selectors:
+          - name: 'tier: frontend'
+    ingresses:
+      - name: app
+        annotations:
+          - name: 'alb.ingress.kubernetes.io/healthy-threshold-count: "2"'
+        ingressPaths:
+          - path: /503
+            service: app
+            port: use-annotation
+  - name: storeme-app
+    statefulsets:
+      - name: db
+        serviceName: db-headless
+        labels:
+          - name: 'service: postgres'
+          - name: 'tier: db'
+        containers:
+          - name: postgres
+            image: 'postgres:latest'
+            envSecret: postgres
+            portInt: 5432
+            portName: db-port
+            envVars:
+              - name: POSTGRES_DB
+                value: sample
+            volumeMounts:
+              - name: db-dir
+                mount: /var/lib/postgres
+        volumes:
           - name: db-dir
-            mount: /var/lib/postgres
-    volumes:
-      - name: db-dir

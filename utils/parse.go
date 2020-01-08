@@ -3,7 +3,6 @@ package utils
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"text/template"
 
 	"github.com/knadh/stuffbin"
@@ -39,7 +38,7 @@ func parse(src string, dest string, config map[string]interface{}, fs stuffbin.F
 
 func saveResource(template string, name string, dest string, config map[string]interface{}, fs stuffbin.FileSystem) error {
 	// parse template file and output yaml
-	err := parse(template, filepath.Join(dest, fmt.Sprintf("%s.yml", name)), config, fs)
+	err := parse(template, dest, config, fs)
 	if err != nil {
 		return err
 	}

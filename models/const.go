@@ -3,12 +3,12 @@ package models
 import "fmt"
 
 const (
-	BaseDir         = "base"
-	DeploymentsDir  = "deployments"
-	ServicesDir     = "services"
-	IngressesDir    = "ingresses"
-	StatefulsetsDir = "statefulsets"
-	TemplatesDir    = "templates"
+	BaseDir      = "base"
+	Deployments  = "deployment"
+	Services     = "service"
+	Ingresses    = "ingress"
+	Statefulsets = "statefulset"
+	TemplatesDir = "templates"
 )
 
 var (

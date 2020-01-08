@@ -26,24 +26,30 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 	var (
 		projectDir = utils.GetRootDir(cliCtx.String("output"))
 	)
-	// Scaffold directory
-	utils.CreateGitopsDirectory(subPaths, projectDir)
 	// Create deployments
-	resources := []models.Resource{}
-	for _, dep := range hub.Config.Deployments {
-		resources = append(resources, models.Resource(dep))
+	for _, workload := range hub.Config.Workloads {
+		resources := []models.Resource{}
+		for _, dep := range workload.Deployments {
+			resources = append(resources, models.Resource(dep))
+		}
+		// Create services
+		for _, svc := range workload.Services {
+			resources = append(resources, models.Resource(svc))
+		}
+		// Create ingress
+		for _, ing := range workload.Ingresses {
+			resources = append(resources, models.Resource(ing))
+		}
+		// Create statefulset
+		for _, ss := range workload.StatefulSets {
+			resources = append(resources, models.Resource(ss))
+		}
+		// Scaffold directory
+		utils.CreateGitopsDirectory(projectDir, workload.Name)
+		err := prepareResources(resources, projectDir, workload.Name, hub.Fs)
+		if err != nil {
+			return err
+		}
 	}
-	// Create services
-	for _, svc := range hub.Config.Services {
-		resources = append(resources, models.Resource(svc))
-	}
-	// Create ingress
-	for _, ing := range hub.Config.Ingresses {
-		resources = append(resources, models.Resource(ing))
-	}
-	// Create statefulset
-	for _, ss := range hub.Config.StatefulSets {
-		resources = append(resources, models.Resource(ss))
-	}
-	return prepareResources(resources, projectDir, hub.Fs)
+	return nil
 }

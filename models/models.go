@@ -2,6 +2,12 @@ package models
 
 // Config represents the structure to hold configuration loaded from an external data source.
 type Config struct {
+	Workloads []Workload `koanf:"workloads"`
+}
+
+// Workload represents the structure to represent all configs and resources to deploy an application.
+type Workload struct {
+	Name         string        `koanf:"name"`
 	Deployments  []Deployment  `koanf:"deployments"`
 	Services     []Service     `koanf:"services"`
 	Ingresses    []Ingress     `koanf:"ingresses"`
@@ -66,19 +72,6 @@ type IngressPath struct {
 	Port    string `koanf:"port"`
 }
 
-// Resource is a set of common actions performed on Resource Types.
-type Resource interface {
-	GetMetaData() ResourceMeta
-}
-
-// ResourceMeta contains metadata for preparing resource manifests.
-type ResourceMeta struct {
-	Name         string
-	Config       map[string]interface{}
-	TemplatePath string
-	ManifestPath string
-}
-
 // Annotation represents the name of annotation value.
 type Annotation struct {
 	Name string `koanf:"name"`
@@ -111,4 +104,17 @@ type VolumeMount struct {
 // ConfigMap as the source.
 type Volume struct {
 	Name string `koanf:"name"`
+}
+
+// Resource is a set of common actions performed on Resource Types.
+type Resource interface {
+	GetMetaData() ResourceMeta
+}
+
+// ResourceMeta contains metadata for preparing resource manifests.
+type ResourceMeta struct {
+	Name         string
+	Config       map[string]interface{}
+	TemplatePath string
+	Type         string
 }

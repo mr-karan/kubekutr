@@ -48,74 +48,74 @@ GLOBAL OPTIONS:
 ```bash
 # create a new base
 
-$ kubekutr -c config.yml scaffold -o myapp
+$ kubekutr -c config.yml scaffold -o myproject
 
 # `myapp` is created with the GitOps structure
-myapp
+myproject
 `-- base
-    |-- deployments
-    |   `-- app.yml
-    |-- ingresses
-    |   `-- app.yml
-    |-- services
-    |   `-- app.yml
-    `-- statefulsets
-        `-- app.yml
+    |-- app
+    |   |-- app-deployment.yml
+    |   |-- app-ingress.yml
+    |   |-- app-service.yml
+    |-- second-app
+        |-- db-statefulset.yml
 ```
 
 ## Configuration
 
--   **deployments**
+- **workloads**
+    -   **name**: Name of the workload. A workload represents the complete set of resources required to deploy an application
+    -   **deployments**
 
-    -   **name**: Name of the deployment
-    -   **replicas**: Represents the number of replicas for a `Pod`
-    -   **labels**:
-        - **name**: Represent the key value pair as a string. For eg: `"app.kubernetes.io/tier: cache"`
-    -   **containers**: List of containers in a Pod
-        - **name**: Unique name for a container
-        - **image**: Docker image name
-        - **portInt**: Number of port to expose from Container
-        - **portName**: Human friendly name for a port
-        - **command**: Entrypoint array
-        - **args**: Arguments to the entrypoint
-        - **envVars**: List of environment variables to set in the container
-            - **name**: Name of environment variable
-            - **value**: Value of environment variable
-        - **volumeMounts**: Pod volumes to mount into the container's filesystem
-            - **name**: Name of Volume
-            - **mountPath**: Path within the container at which the volume should be mounted
-            - **subPath**: Path within the volume from which the container's volume should be mounted.
-    -   **volumes**: List of volumes defined for a deployment
-            - **name**: Name of Volume
+        -   **name**: Name of the deployment
+        -   **replicas**: Represents the number of replicas for a `Pod`
+        -   **labels**:
+            - **name**: Represent the key value pair as a string. For eg: `"app.kubernetes.io/tier: cache"`
+        -   **containers**: List of containers in a Pod
+            - **name**: Unique name for a container
+            - **image**: Docker image name
+            - **portInt**: Number of port to expose from Container
+            - **portName**: Human friendly name for a port
+            - **command**: Entrypoint array
+            - **args**: Arguments to the entrypoint
+            - **envVars**: List of environment variables to set in the container
+                - **name**: Name of environment variable
+                - **value**: Value of environment variable
+            - **volumeMounts**: Pod volumes to mount into the container's filesystem
+                - **name**: Name of Volume
+                - **mountPath**: Path within the container at which the volume should be mounted
+                - **subPath**: Path within the volume from which the container's volume should be mounted.
+        -   **volumes**: List of volumes defined for a deployment
+                - **name**: Name of Volume
 
--   **statefulsets**
+    -   **statefulsets**
 
-    -   **name**: Name of the statefulset
-    -   **serviceName**: serviceName is the name of the service that governs this StatefulSet
-    -   **labels**: (reference above)
-    -   **containers**: (reference above)
-    -   **volumes**:(reference above)
+        -   **name**: Name of the statefulset
+        -   **serviceName**: serviceName is the name of the service that governs this StatefulSet
+        -   **labels**: (reference above)
+        -   **containers**: (reference above)
+        -   **volumes**:(reference above)
 
--   **services**
+    -   **services**
 
-    -   **name**: Name of service
-    -   **type**: Type of service. Can be one of `ClusterIP`, `NodePort`, `LoadBalancer`
-    -   **port**: The port that will be exposed by this service
-    -   **targetPort**: Number or name of the port to access on the pods targeted by the service
-    -   **labels**: (reference above)
-    -   **selectors**:
-        - **name**:  Route service traffic to pods with label keys and values matching this selector
+        -   **name**: Name of service
+        -   **type**: Type of service. Can be one of `ClusterIP`, `NodePort`, `LoadBalancer`
+        -   **port**: The port that will be exposed by this service
+        -   **targetPort**: Number or name of the port to access on the pods targeted by the service
+        -   **labels**: (reference above)
+        -   **selectors**:
+            - **name**:  Route service traffic to pods with label keys and values matching this selector
 
--   **ingresses**
+    -   **ingresses**
 
-    -   **name**: Name of ingress
-    -   **ingressPaths**
-        -   **path**: Path which map requests to backends
-        -   **service**: Specifies the name of the referenced service
-        -   **port**: Specifies the port of the referenced service
-    -   **labels**: (reference above)
-    -   **annotations**:
-        - **name**:  Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata
+        -   **name**: Name of ingress
+        -   **ingressPaths**
+            -   **path**: Path which map requests to backends
+            -   **service**: Specifies the name of the referenced service
+            -   **port**: Specifies the port of the referenced service
+        -   **labels**: (reference above)
+        -   **annotations**:
+            - **name**:  Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata
 
 ## Contributing
 
