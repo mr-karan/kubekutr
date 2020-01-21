@@ -1,7 +1,7 @@
 env:
   - GO111MODULE=on
   - CGO_ENABLED=0
-  - RELEASE_BUILDS=dist/kubekutr_darwin_amd64/kubekutr dist/kubekutr_linux_amd64/kubekutr dist/kubekutr_windows_amd64//kubekutr.exe
+  - RELEASE_BUILDS=dist/kubekutr_darwin_amd64/kubekutr dist/kubekutr_linux_amd64/kubekutr dist/kubekutr_windows_amd64/kubekutr.exe
 
 builds:
   - binary: kubekutr
