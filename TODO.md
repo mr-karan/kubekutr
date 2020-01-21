@@ -35,3 +35,5 @@
 - [ ] Generate `kustomization.yaml` too
 
 - [ ] Write tests
+
+- [ ] Package manager releases
