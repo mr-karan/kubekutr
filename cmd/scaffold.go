@@ -16,7 +16,7 @@ func (hub *Hub) ScaffoldProject(config models.Config) cli.Command {
 		Flags: []cli.Flag{
 			cli.StringFlag{
 				Name:  "output, o",
-				Usage: "Path to manifests output directory for `PROJECT`",
+				Usage: "Path to manifests output directory for `PROJECT`. Outputs to STDOUT if not provided",
 			},
 		},
 	}
