@@ -26,7 +26,7 @@
 
 - [x] Support application based workload config
 
-- [ ] Add output to stdout
+- [x] Add output to stdout
 
 - [ ] RBAC resources manifests
 
