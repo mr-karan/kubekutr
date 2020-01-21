@@ -8,9 +8,9 @@ import (
 // GetRootDir returns a relative path to the root of Gitops directory.
 func GetRootDir(dest string) string {
 	if dest == "" {
-		dest, _ = os.Getwd()
+		return ""
 	}
-	return filepath.Join(dest)
+	return filepath.Clean(dest)
 }
 
 // CreateGitopsDirectory creates an opinionated directory structure to organize
