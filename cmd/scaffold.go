@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/urfave/cli"
 	"zerodha.tech/kubekutr/models"
 	"zerodha.tech/kubekutr/utils"
@@ -27,6 +29,9 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 		projectDir = utils.GetRootDir(cliCtx.String("output"))
 	)
 	// Create deployments
+	if len(hub.Config.Workloads) == 0 {
+		return fmt.Errorf(fmt.Sprintf("No workloads specified in configuration. Please check the config syntax."))
+	}
 	for _, workload := range hub.Config.Workloads {
 		resources := []models.Resource{}
 		for _, dep := range workload.Deployments {
