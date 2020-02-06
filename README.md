@@ -66,7 +66,6 @@ myproject
 - **workloads**
     -   **name**: Name of the workload. A workload represents the complete set of resources required to deploy an application
     -   **deployments**
-
         -   **name**: Name of the deployment
         -   **replicas**: Represents the number of replicas for a `Pod`
         -   **labels**:
@@ -76,6 +75,7 @@ myproject
             - **image**: Docker image name
             - **portInt**: Number of port to expose from Container
             - **portName**: Human friendly name for a port
+            - **createService**: (_False/True_): Automatically create a `Service` manifest based on the port settings of container.
             - **command**: Entrypoint array
             - **args**: Arguments to the entrypoint
             - **envVars**: List of environment variables to set in the container
@@ -89,7 +89,6 @@ myproject
                 - **name**: Name of Volume
 
     -   **statefulsets**
-
         -   **name**: Name of the statefulset
         -   **serviceName**: serviceName is the name of the service that governs this StatefulSet
         -   **labels**: (reference above)
@@ -97,17 +96,18 @@ myproject
         -   **volumes**:(reference above)
 
     -   **services**
-
         -   **name**: Name of service
         -   **type**: Type of service. Can be one of `ClusterIP`, `NodePort`, `LoadBalancer`
-        -   **port**: The port that will be exposed by this service
-        -   **targetPort**: Number or name of the port to access on the pods targeted by the service
+        -   **ports**:
+            - **name**: Unique identifier for the port.
+            - **port**: Port address/name for port exposed on container.
+            - **targetPort**: Number or name of the port to access on the pods targeted by the service
+            - **protocol**: Defaults to TCP. (Can be either _TCP/UDP_)
         -   **labels**: (reference above)
         -   **selectors**:
             - **name**:  Route service traffic to pods with label keys and values matching this selector
 
     -   **ingresses**
-
         -   **name**: Name of ingress
         -   **ingressPaths**
             -   **path**: Path which map requests to backends
