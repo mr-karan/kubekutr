@@ -13,11 +13,20 @@ import (
 func parse(src string, fs stuffbin.FileSystem) (*template.Template, error) {
 	// read template file
 	tmpl := template.New(src)
+	// load default templates
+	c, err := fs.Read("templates/containers.tmpl")
+	if err != nil {
+		return nil, fmt.Errorf("error parsing default template: %v", err)
+	}
+	tmpl, err = tmpl.Parse(string(c))
+	if err != nil {
+		return nil, fmt.Errorf("error parsing default template: %v", err)
+	}
+	// load main template
 	f, err := fs.Read(src)
 	if err != nil {
 		return nil, fmt.Errorf("error reading template file %s: %v", src, err)
 	}
-
 	return tmpl.Parse(string(f))
 }
 

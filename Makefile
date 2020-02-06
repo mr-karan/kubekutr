@@ -16,8 +16,11 @@ build:
 	go build -o ${BIN} -ldflags="-X 'main.buildVersion=${VERSION}' -X 'main.buildDate=${BUILD_DATE}'"
 	stuffbin -a stuff -in ${BIN} -out ${BIN} ${STATIC}
 
+test-local:
+	./${BIN} -c config.yml s
+
 run:
-	./kubekutr
+	./${BIN}
 
 fresh: clean build run
 

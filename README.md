@@ -5,7 +5,7 @@
 
 🍪✂️ _Cookie cutter for Kubernetes resource manifests_
 
-`kubekutr` lets you quickly scaffold a [bespoke](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#bespoke-configuration) configuration for Kubernetes resource manifests with an _opinionated_ GitOps directory structure. `kubekutr` is ideally meant to be used in combination with [kustomize](https://github.com/kubernetes-sigs/kustomize). 
+`kubekutr` lets you quickly scaffold a [bespoke](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#bespoke-configuration) configuration for Kubernetes resource manifests with an _opinionated_ GitOps directory structure. `kubekutr` is ideally meant to be used in combination with [kustomize](https://github.com/kubernetes-sigs/kustomize).
 
 Read the blog [post](https://mrkaran.dev/posts/introducing-kubekutr/) for more info. 
 
@@ -19,7 +19,7 @@ Read the blog [post](https://mrkaran.dev/posts/introducing-kubekutr/) for more i
 
 ## Usage
 
-```
+```shell
 NAME:
    kubekutr - Cookie cutter for Kubernetes resource manifests
 

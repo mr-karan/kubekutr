@@ -11,14 +11,21 @@ metadata:
   {{- end}}
 spec:
   ports:
-    - port: {{.Port}}
-      targetPort: {{.TargetPort}}
-      protocol: TCP
-  type: {{.Type}}
+  {{- range .Ports}}
+  - port: {{.Port}}
+    {{- if .Name }}
+    name: {{.Name}}
+    {{- end}}
+    targetPort: {{.TargetPort}}
+    protocol: {{- if .Protocol }} {{.Protocol}} {{- else }} TCP {{- end}}
+  {{- end}}
+  type: {{- if .Type }} {{.Type}} {{- else }} ClusterIP {{- end}}
   {{- if .Selectors}}
   selector:
     {{- range .Selectors}}
     {{.Name}}
     {{- end}}
   {{- end}}
-
+  {{- if .Headless}}
+  clusterIP: None
+  {{- end}}

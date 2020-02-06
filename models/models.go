@@ -19,7 +19,7 @@ type Deployment struct {
 	Name       string      `koanf:"name"`
 	Replicas   string      `koanf:"replicas"`
 	Containers []Container `koanf:"containers"`
-	Labels     []Label     `koanf:"labels"`
+	Labels     []Identifer `koanf:"labels"`
 	Volumes    []Volume    `koanf:"volumes"`
 }
 
@@ -28,32 +28,41 @@ type StatefulSet struct {
 	Name        string      `koanf:"name"`
 	ServiceName string      `koanf:"serviceName"`
 	Containers  []Container `koanf:"containers"`
-	Labels      []Label     `koanf:"labels"`
+	Labels      []Identifer `koanf:"labels"`
 	Volumes     []Volume    `koanf:"volumes"`
 }
 
 // Container represents configuration options for the Container spec in a Pod definition.
 type Container struct {
-	Name         string        `koanf:"name"`
-	Image        string        `koanf:"image"`
-	EnvSecret    string        `koanf:"envSecret"`
-	EnvVars      []EnvVar      `koanf:"envVars"`
-	Container    string        `koanf:"container"`
-	PortInt      int           `koanf:"portInt"`
-	PortName     string        `koanf:"portName"`
-	Command      string        `koanf:"command"`
-	Args         string        `koanf:"args"`
-	VolumeMounts []VolumeMount `koanf:"volumeMounts"`
+	CreateService      bool          `koanf:"createService"`
+	Name               string        `koanf:"name"`
+	Image              string        `koanf:"image"`
+	EnvSecret          string        `koanf:"envSecret"`
+	EnvVars            []EnvVar      `koanf:"envVars"`
+	Container          string        `koanf:"container"`
+	PortInt            int           `koanf:"portInt"`
+	PortName           string        `koanf:"portName"`
+	Command            string        `koanf:"command"`
+	Args               string        `koanf:"args"`
+	VolumeMounts       []VolumeMount `koanf:"volumeMounts"`
+	RequestsCPU        string        `koanf:"cpuRequests"`
+	RequestsMemory     string        `koanf:"memoryRequests"`
+	LimitsCPU          string        `koanf:"cpuLimits"`
+	LimitsMemory       string        `koanf:"memoryLimits"`
+	ReadinessProbePort string        `koanf:"readinessProbePort"`
+	ReadinessProbePath string        `konaf:"readinessProbePath"`
+	LivenessProbePort  string        `koanf:"livenessProbePort"`
+	LivenessProbePath  string        `konaf:"livenessProbePath"`
 }
 
 // Service represents configuration options for Service spec.
 type Service struct {
-	Name       string     `koanf:"name"`
-	Port       string     `koanf:"port"`
-	TargetPort string     `koanf:"targetPort"`
-	Type       string     `koanf:"type"`
-	Labels     []Label    `koanf:"labels"`
-	Selectors  []Selector `koanf:"selectors"`
+	Name      string      `koanf:"name"`
+	Ports     []Port      `koanf:"ports"`
+	Type      string      `koanf:"type"`
+	Labels    []Identifer `koanf:"labels"`
+	Selectors []Identifer `koanf:"selectors"`
+	Headless  bool        `koanf:"headless"`
 }
 
 // Ingress represents configuration options for Ingress spec.
@@ -62,7 +71,7 @@ type Ingress struct {
 	Class       string        `koanf:"class"`
 	Paths       []IngressPath `koanf:"ingressPaths"`
 	Annotations []Annotation  `koanf:"annotations"`
-	Labels      []Label       `koanf:"labels"`
+	Labels      []Identifer   `koanf:"labels"`
 }
 
 // IngressPath represents the definition for `paths` specified in Ingress.
@@ -77,13 +86,16 @@ type Annotation struct {
 	Name string `koanf:"name"`
 }
 
-// Label represents the kv pair for a label.
-type Label struct {
-	Name string `koanf:"name"`
+// Port represents the structure for defining ports in services
+type Port struct {
+	Name       string `koanf:"name"`
+	Port       string `koanf:"port"`
+	TargetPort string `koanf:"targetPort"`
+	Protocol   string `koanf:"protocol"`
 }
 
-// Selector represents the kv pair for a label.
-type Selector struct {
+// Identifer represents the kv pair for a label.
+type Identifer struct {
 	Name string `koanf:"name"`
 }
 

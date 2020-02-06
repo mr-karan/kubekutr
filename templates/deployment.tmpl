@@ -24,47 +24,10 @@ spec:
         {{- end}}
     spec:
       containers:
-      {{- range .Containers}}
-        - name: {{.Name}}
-          image: {{.Image}}
-          {{- if .Command}}
-          command: {{.Command}}
-          {{- end}}
-          {{- if .Args}}
-          args: {{.Args}}
-          {{- end}}
-          {{- if .PortInt}}
-          ports:
-          - containerPort: {{.PortInt}}
-            name: {{.PortName}}
-          {{- end}}
-          {{- if .EnvSecret}}
-          envFrom:
-          - secretRef:
-              name: {{.EnvSecret}}
-          {{- end}}
-          {{- if .EnvVars}}
-          env:
-          {{- range .EnvVars}}
-          - name: {{.Name}}
-            value: {{.Value}}
-          {{- end}}
-          {{- end}}
-          {{- if .VolumeMounts}}
-          volumeMounts:
-          {{- range .VolumeMounts}}
-          - mountPath: {{.MountPath}}
-            name: {{.Name}}
-            {{- if .SubPath}}
-            subPath: {{.SubPath}}
-            {{- end}}
-          {{- end}}
-          {{- end}}
-      {{- end}}
+      {{- template "containers" . }}
       {{- if .Volumes}}
       volumes:
         {{- range .Volumes}}
         - name: {{.Name}}
         {{- end}}
       {{- end}}
-

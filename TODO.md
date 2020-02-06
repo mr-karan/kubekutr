@@ -1,3 +1,5 @@
+# TODO
+
 - [X] Cover all manifests for basic version
 
 - [X] Custom config path
@@ -28,9 +30,17 @@
 
 - [x] Add output to stdout
 
-- [ ] RBAC resources manifests
+- [x] Liveliness/Readiness checks
 
-- [ ] More resources and specs
+- [x] Resource limits with sane defaults
+
+- [x] Auto create a service (in deployment/statefulset)
+
+- [ ] Initialise a git repo with default config (probably flag)
+
+- [ ] Explore Kustomize functions
+
+- [ ] RBAC resources manifests
 
 - [ ] Generate `kustomization.yaml` too
 

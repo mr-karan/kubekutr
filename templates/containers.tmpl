@@ -1,0 +1,72 @@
+{{ define "containers" }}
+{{- range .Containers}}
+      - name: {{.Name}}
+        image: {{.Image}}
+        {{- if .Command}}
+        command: {{.Command}}
+        {{- end}}
+        {{- if .Args}}
+        args: {{.Args}}
+        {{- end}}
+        {{- if .PortInt}}
+        ports:
+        - containerPort: {{.PortInt}}
+          name: {{.PortName}}
+        {{- end}}
+        resources:
+          requests:
+            memory: {{- if .RequestsMemory }} {{.RequestsMemory}} {{- else }} 128mi {{- end}}
+            cpu: {{- if .RequestsCPU }} {{.RequestsCPU}} {{- else }} 250m {{- end}}
+          limits:
+            memory: {{- if .LimitsMemory }} {{.LimitsMemory}} {{- else }} 256mi {{- end}}
+            cpu: {{- if .LimitsCPU }} {{.LimitsCPU}} {{- else }} 500m {{- end}}
+        {{- if .ReadinessProbePort}}
+        readinessProbe:
+          httpGet:
+            path: {{.ReadinessProbePath}}
+            port: {{.ReadinessProbePort}}
+            httpHeaders:
+            - name: X-Kubernetes
+              value: readinessProbe
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 5
+          timeoutSeconds: 7
+        {{- end}}
+        {{- if .LivenessProbePort}}
+          livenessProbe:
+            httpGet:
+              path: {{.LivenessProbePath}}
+              port: {{.LivenessProbePort}}
+              httpHeaders:
+              - name: X-Kubernetes
+                value: livenessProbe
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 7
+            failureThreshold: 5
+        {{- end}}
+        {{- if .EnvSecret}}
+        envFrom:
+          - secretRef:
+            name: {{.EnvSecret}}
+        {{- end}}
+        {{- if .EnvVars}}
+        env:
+        {{- range .EnvVars}}
+        - name: {{.Name}}
+          value: {{.Value}}
+        {{- end}}
+        {{- end}}
+        {{- if .VolumeMounts}}
+        volumeMounts:
+        {{- range .VolumeMounts}}
+        - mountPath: {{.MountPath}}
+          name: {{.Name}}
+          {{- if .SubPath}}
+          subPath: {{.SubPath}}
+          {{- end}}
+        {{- end}}
+        {{- end}}
+{{- end}}
+{{- end }}

@@ -5,12 +5,12 @@ func (svc Service) GetMetaData() ResourceMeta {
 		Name:         svc.Name,
 		TemplatePath: ServiceTemplatePath,
 		Config: map[string]interface{}{
-			"Name":       svc.Name,
-			"Port":       svc.Port,
-			"TargetPort": svc.TargetPort,
-			"Type":       svc.Type,
-			"Labels":     svc.Labels,
-			"Selectors":  svc.Selectors,
+			"Name":      svc.Name,
+			"Ports":     svc.Ports,
+			"Type":      svc.Type,
+			"Headless":  svc.Headless,
+			"Labels":    svc.Labels,
+			"Selectors": svc.Selectors,
 		},
 		Type: Services,
 	}
