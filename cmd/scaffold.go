@@ -37,15 +37,17 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 		for _, dep := range workload.Deployments {
 			for _, cont := range dep.Containers {
 				if cont.CreateService {
+					ports := []models.Port{}
+					for _, port := range cont.Ports {
+						ports = append(ports, models.Port{
+							Name:       port.Name,
+							Port:       port.Name,
+							TargetPort: port.Name,
+						})
+					}
 					svc := models.Service{
-						Name: dep.Name,
-						Ports: []models.Port{
-							models.Port{
-								Name:       cont.PortName,
-								Port:       cont.PortName,
-								TargetPort: cont.PortName,
-							},
-						},
+						Name:      dep.Name,
+						Ports:     ports,
 						Labels:    dep.Labels,
 						Selectors: dep.Labels,
 					}
