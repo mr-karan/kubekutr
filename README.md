@@ -27,13 +27,14 @@ USAGE:
    kubekutr [global options] command [command options] [arguments...]
 
 VERSION:
-   3445a6f (2019-12-30 09:03:24 +0530)
+   4175090 (2020-02-06 18:03:26 +0530)
 
 AUTHOR:
    Karan Sharma @mrkaran
 
 COMMANDS:
    scaffold, s  Scaffold a new project with gitops structure
+   init, i      Initialize a new project. Initializes git repo and a sample config file.
    help, h      Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
