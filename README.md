@@ -73,8 +73,9 @@ myproject
         -   **containers**: List of containers in a Pod
             - **name**: Unique name for a container
             - **image**: Docker image name
-            - **portInt**: Number of port to expose from Container
-            - **portName**: Human friendly name for a port
+        -   **ports**:
+            - **name**: Unique identifier for the port.
+            - **port**: Port address/name for port exposed on container.
             - **createService**: (_False/True_): Automatically create a `Service` manifest based on the port settings of container.
             - **command**: Entrypoint array
             - **args**: Arguments to the entrypoint
