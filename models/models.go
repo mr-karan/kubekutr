@@ -40,8 +40,7 @@ type Container struct {
 	EnvSecret          string        `koanf:"envSecret"`
 	EnvVars            []EnvVar      `koanf:"envVars"`
 	Container          string        `koanf:"container"`
-	PortInt            int           `koanf:"portInt"`
-	PortName           string        `koanf:"portName"`
+	Ports              []Port        `koanf:"ports"`
 	Command            string        `koanf:"command"`
 	Args               string        `koanf:"args"`
 	VolumeMounts       []VolumeMount `koanf:"volumeMounts"`

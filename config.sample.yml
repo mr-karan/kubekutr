@@ -8,10 +8,12 @@ workloads:
           - name: 'tier: frontend'
         containers:
           - name: app
+            createService: true
             image: 'myapp:latest'
             envSecret: myapp
-            portInt: 3000
-            portName: app-port
+            ports:
+            - name: app-port
+              port: 3000
             command: '["./myapp"]'
             args: '["--config", "--hello"]'
             envVars:
@@ -26,8 +28,15 @@ workloads:
     services:
       - name: app
         type: NodePort
-        port: 7000
-        targetPort: 8000
+        headless: true
+        ports:
+          - name: app-port
+            targetPort: 8000
+            port: app-port
+            protocol: UDP
+          - name: cache-port
+            targetPort: 7000
+            port: 9000
         labels:
           - name: 'service: app'
         selectors:
@@ -40,7 +49,7 @@ workloads:
           - path: /503
             service: app
             port: use-annotation
-  - name: storeme-app
+  - name: second-app
     statefulsets:
       - name: db
         serviceName: db-headless
@@ -59,5 +68,9 @@ workloads:
             volumeMounts:
               - name: db-dir
                 mount: /var/lib/postgres
+            cpuLimits: 800m
+            memoryLimits: 1500mi
+            cpuRequests: 400m
+            memoryRequests: 750mi
         volumes:
           - name: db-dir
