@@ -77,15 +77,15 @@ myproject
             - **name**: Unique identifier for the port.
             - **port**: Port address/name for port exposed on container.
             - **createService**: (_False/True_): Automatically create a `Service` manifest based on the port settings of container.
-            - **command**: Entrypoint array
-            - **args**: Arguments to the entrypoint
-            - **envVars**: List of environment variables to set in the container
-                - **name**: Name of environment variable
-                - **value**: Value of environment variable
-            - **volumeMounts**: Pod volumes to mount into the container's filesystem
-                - **name**: Name of Volume
-                - **mountPath**: Path within the container at which the volume should be mounted
-                - **subPath**: Path within the volume from which the container's volume should be mounted.
+        - **command**: Entrypoint array
+        - **args**: Arguments to the entrypoint
+        - **envVars**: List of environment variables to set in the container
+            - **name**: Name of environment variable
+            - **value**: Value of environment variable
+        - **volumeMounts**: Pod volumes to mount into the container's filesystem
+            - **name**: Name of Volume
+            - **mountPath**: Path within the container at which the volume should be mounted
+            - **subPath**: Path within the volume from which the container's volume should be mounted.
         -   **volumes**: List of volumes defined for a deployment
                 - **name**: Name of Volume
 
