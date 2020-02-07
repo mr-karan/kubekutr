@@ -15,10 +15,10 @@
         {{- end}}
         resources:
           requests:
-            memory: {{- if .RequestsMemory }} {{.RequestsMemory}} {{- else }} 128mi {{- end}}
+            memory: {{- if .RequestsMemory }} {{.RequestsMemory}} {{- else }} 128Mi {{- end}}
             cpu: {{- if .RequestsCPU }} {{.RequestsCPU}} {{- else }} 250m {{- end}}
           limits:
-            memory: {{- if .LimitsMemory }} {{.LimitsMemory}} {{- else }} 256mi {{- end}}
+            memory: {{- if .LimitsMemory }} {{.LimitsMemory}} {{- else }} 256Mi {{- end}}
             cpu: {{- if .LimitsCPU }} {{.LimitsCPU}} {{- else }} 500m {{- end}}
         {{- if .ReadinessProbePort}}
         readinessProbe:

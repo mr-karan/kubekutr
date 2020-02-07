@@ -64,6 +64,8 @@ myproject
 
 ## Configuration
 
+You can see a sample configuration file [here](templates/config.sample.yml).
+
 - **workloads**
     -   **name**: Name of the workload. A workload represents the complete set of resources required to deploy an application
     -   **deployments**

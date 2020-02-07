@@ -15,7 +15,7 @@ func (hub *Hub) ScaffoldProject(config models.Config) cli.Command {
 	return cli.Command{
 		Name:    "scaffold",
 		Aliases: []string{"s"},
-		Usage:   "Scaffold a new project with gitops structure",
+		Usage:   "Scaffold a new project using config.",
 		Action:  hub.initApp(hub.scaffold),
 		Flags: []cli.Flag{
 			cli.StringFlag{
@@ -31,7 +31,7 @@ func (hub *Hub) InitProject(config models.Config) cli.Command {
 	return cli.Command{
 		Name:    "init",
 		Aliases: []string{"i"},
-		Usage:   "Initialize a new project. Initializes git repo and a sample config file.",
+		Usage:   "Initializes an empty git repo with a sample kubekutr config file.",
 		Action:  hub.init,
 	}
 }
@@ -80,7 +80,7 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 					for _, port := range cont.Ports {
 						ports = append(ports, models.Port{
 							Name:       port.Name,
-							Port:       port.Name,
+							Port:       port.Port,
 							TargetPort: port.Name,
 						})
 					}
