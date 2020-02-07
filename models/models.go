@@ -48,10 +48,10 @@ type Container struct {
 	RequestsMemory     string        `koanf:"memoryRequests"`
 	LimitsCPU          string        `koanf:"cpuLimits"`
 	LimitsMemory       string        `koanf:"memoryLimits"`
-	ReadinessProbePort string        `koanf:"readinessProbePort"`
-	ReadinessProbePath string        `konaf:"readinessProbePath"`
-	LivenessProbePort  string        `koanf:"livenessProbePort"`
-	LivenessProbePath  string        `konaf:"livenessProbePath"`
+	ReadinessProbePort string        `koanf:"readinessPort"`
+	ReadinessProbePath string        `koanf:"readinessPath"`
+	LivenessProbePort  string        `koanf:"livenessPort"`
+	LivenessProbePath  string        `koanf:"livenessPath"`
 }
 
 // Service represents configuration options for Service spec.

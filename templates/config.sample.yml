@@ -16,6 +16,14 @@ workloads:
               port: 3000
             command: '["./myapp"]'
             args: '["--config", "--hello"]'
+            cpuLimits: 800m
+            memoryLimits: 1500mi
+            cpuRequests: 400m
+            memoryRequests: 750mi
+            readinessPort: 3000
+            readinessPath: /api/readiness
+            livenessPort: 3000
+            livenessPath: /api/liveness
             envVars:
               - name: hello
                 value: iamsecret
