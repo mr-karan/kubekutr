@@ -49,7 +49,7 @@
         {{- if .EnvSecret}}
         envFrom:
           - secretRef:
-            name: {{.EnvSecret}}
+              name: {{.EnvSecret}}
         {{- end}}
         {{- if .EnvVars}}
         env:
