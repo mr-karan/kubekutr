@@ -78,6 +78,7 @@ func main() {
 	// Register commands.
 	app.Commands = []cli.Command{
 		hub.ScaffoldProject(hub.Config),
+		hub.InitProject(hub.Config),
 	}
 	// Run the app.
 	hub.Logger.Info("Starting kubekutr...")
