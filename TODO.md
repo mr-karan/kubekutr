@@ -36,7 +36,7 @@
 
 - [x] Auto create a service (in deployment/statefulset)
 
-- [ ] Initialise a git repo with default config (probably flag)
+- [x] Initialise a git repo with default config (probably flag)
 
 - [ ] Explore Kustomize functions
 
