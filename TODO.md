@@ -42,6 +42,8 @@
 
 - [ ] RBAC resources manifests
 
+- [ ] Add Jobs/Crons resource manifests
+
 - [ ] Generate `kustomization.yaml` too
 
 - [ ] Write tests
