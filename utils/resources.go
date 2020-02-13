@@ -26,7 +26,6 @@ func CreateResource(resource models.Resource, rootDir string, workload string, f
 		if err != nil {
 			return err
 		}
-
 		dest = f
 	}
 

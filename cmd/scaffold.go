@@ -2,8 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
-	"os/exec"
 
 	"github.com/urfave/cli"
 	"zerodha.tech/kubekutr/models"
@@ -24,43 +22,6 @@ func (hub *Hub) ScaffoldProject(config models.Config) cli.Command {
 			},
 		},
 	}
-}
-
-// InitProject initializes git repo and copies a sample config
-func (hub *Hub) InitProject(config models.Config) cli.Command {
-	return cli.Command{
-		Name:    "init",
-		Aliases: []string{"i"},
-		Usage:   "Initializes an empty git repo with a sample kubekutr config file.",
-		Action:  hub.init,
-	}
-}
-
-func (hub *Hub) init(cliCtx *cli.Context) error {
-	// Initialize git repository
-	cmd := exec.Command("git", "init")
-	err := cmd.Run()
-	if err != nil {
-		return fmt.Errorf("error while initializing git repo: %v", err)
-	}
-
-	// Copy sample config to local directory
-	sampleConfig, err := hub.Fs.Read("templates/config.sample.yml")
-	if err != nil {
-		return fmt.Errorf("error while copying sample config: %v", err)
-	}
-
-	f, err := os.Create("config.sample.yml")
-	if err != nil {
-		return fmt.Errorf("error while creating sample config: %v", err)
-	}
-
-	_, err = f.Write(sampleConfig)
-	if err != nil {
-		return fmt.Errorf("error while copying sample config: %v", err)
-	}
-
-	return nil
 }
 
 func (hub *Hub) scaffold(cliCtx *cli.Context) error {

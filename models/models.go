@@ -2,119 +2,119 @@ package models
 
 // Config represents the structure to hold configuration loaded from an external data source.
 type Config struct {
-	Workloads []Workload `koanf:"workloads"`
+	Workloads []Workload `koanf:"workloads" yaml:"workloads"`
 }
 
 // Workload represents the structure to represent all configs and resources to deploy an application.
 type Workload struct {
-	Name         string        `koanf:"name"`
-	Deployments  []Deployment  `koanf:"deployments"`
-	Services     []Service     `koanf:"services"`
-	Ingresses    []Ingress     `koanf:"ingresses"`
-	StatefulSets []StatefulSet `koanf:"statefulsets"`
+	Name         string        `koanf:"name" yaml:"name"`
+	Deployments  []Deployment  `koanf:"deployments" yaml:"deployments"`
+	Services     []Service     `koanf:"services" yaml:"services"`
+	Ingresses    []Ingress     `koanf:"ingresses" yaml:"ingresses"`
+	StatefulSets []StatefulSet `koanf:"statefulsets" yaml:"statefulsets"`
 }
 
 // Deployment represents configuration options for the Deployment spec.
 type Deployment struct {
-	Name       string      `koanf:"name"`
-	Replicas   string      `koanf:"replicas"`
-	Containers []Container `koanf:"containers"`
-	Labels     []Identifer `koanf:"labels"`
-	Volumes    []Volume    `koanf:"volumes"`
+	Name       string      `koanf:"name" yaml:"name"`
+	Replicas   string      `koanf:"replicas" yaml:"replicas"`
+	Containers []Container `koanf:"containers" yaml:"containers"`
+	Labels     []Identifer `koanf:"labels" yaml:"labels"`
+	Volumes    []Volume    `koanf:"volumes" yaml:"volumes"`
 }
 
 // StatefulSet represents configuration options for StatefulSet spec.
 type StatefulSet struct {
-	Name        string      `koanf:"name"`
-	ServiceName string      `koanf:"serviceName"`
-	Containers  []Container `koanf:"containers"`
-	Labels      []Identifer `koanf:"labels"`
-	Volumes     []Volume    `koanf:"volumes"`
+	Name        string      `koanf:"name" yaml:"name"`
+	ServiceName string      `koanf:"serviceName" yaml:"serviceName"`
+	Containers  []Container `koanf:"containers" yaml:"containers"`
+	Labels      []Identifer `koanf:"labels" yaml:"labels"`
+	Volumes     []Volume    `koanf:"volumes" yaml:"volumes"`
 }
 
 // Container represents configuration options for the Container spec in a Pod definition.
 type Container struct {
-	CreateService      bool          `koanf:"createService"`
-	Name               string        `koanf:"name"`
-	Image              string        `koanf:"image"`
-	EnvSecret          string        `koanf:"envSecret"`
-	EnvVars            []EnvVar      `koanf:"envVars"`
-	Container          string        `koanf:"container"`
-	Ports              []Port        `koanf:"ports"`
-	Command            string        `koanf:"command"`
-	Args               string        `koanf:"args"`
-	VolumeMounts       []VolumeMount `koanf:"volumeMounts"`
-	RequestsCPU        string        `koanf:"cpuRequests"`
-	RequestsMemory     string        `koanf:"memoryRequests"`
-	LimitsCPU          string        `koanf:"cpuLimits"`
-	LimitsMemory       string        `koanf:"memoryLimits"`
-	ReadinessProbePort string        `koanf:"readinessPort"`
-	ReadinessProbePath string        `koanf:"readinessPath"`
-	LivenessProbePort  string        `koanf:"livenessPort"`
-	LivenessProbePath  string        `koanf:"livenessPath"`
+	CreateService      bool          `koanf:"createService" yaml:"createService"`
+	Name               string        `koanf:"name" yaml:"name"`
+	Image              string        `koanf:"image" yaml:"image"`
+	EnvSecret          string        `koanf:"envSecret" yaml:"envSecret"`
+	EnvVars            []EnvVar      `koanf:"envVars" yaml:"envVars"`
+	Container          string        `koanf:"container" yaml:"container"`
+	Ports              []Port        `koanf:"ports" yaml:"ports"`
+	Command            string        `koanf:"command" yaml:"command"`
+	Args               string        `koanf:"args" yaml:"args"`
+	VolumeMounts       []VolumeMount `koanf:"volumeMounts" yaml:"volumeMounts"`
+	RequestsCPU        string        `koanf:"cpuRequests" yaml:"cpuRequests"`
+	RequestsMemory     string        `koanf:"memoryRequests" yaml:"memoryRequests"`
+	LimitsCPU          string        `koanf:"cpuLimits" yaml:"cpuLimits"`
+	LimitsMemory       string        `koanf:"memoryLimits" yaml:"memoryLimits"`
+	ReadinessProbePort string        `koanf:"readinessPort" yaml:"readinessPort"`
+	ReadinessProbePath string        `koanf:"readinessPath" yaml:"readinessPath"`
+	LivenessProbePort  string        `koanf:"livenessPort" yaml:"livenessPort"`
+	LivenessProbePath  string        `koanf:"livenessPath" yaml:"livenessPath"`
 }
 
 // Service represents configuration options for Service spec.
 type Service struct {
-	Name      string      `koanf:"name"`
-	Ports     []Port      `koanf:"ports"`
-	Type      string      `koanf:"type"`
-	Labels    []Identifer `koanf:"labels"`
-	Selectors []Identifer `koanf:"selectors"`
-	Headless  bool        `koanf:"headless"`
+	Name      string      `koanf:"name" yaml:"name"`
+	Ports     []Port      `koanf:"ports" yaml:"ports"`
+	Type      string      `koanf:"type" yaml:"type"`
+	Labels    []Identifer `koanf:"labels" yaml:"labels"`
+	Selectors []Identifer `koanf:"selectors" yaml:"selectors"`
+	Headless  bool        `koanf:"headless" yaml:"headless"`
 }
 
 // Ingress represents configuration options for Ingress spec.
 type Ingress struct {
-	Name        string        `koanf:"name"`
-	Class       string        `koanf:"class"`
-	Paths       []IngressPath `koanf:"ingressPaths"`
-	Annotations []Annotation  `koanf:"annotations"`
-	Labels      []Identifer   `koanf:"labels"`
+	Name        string        `koanf:"name" yaml:"name"`
+	Class       string        `koanf:"class" yaml:"class"`
+	Paths       []IngressPath `koanf:"ingressPaths" yaml:"ingressPaths"`
+	Annotations []Annotation  `koanf:"annotations" yaml:"annotations"`
+	Labels      []Identifer   `koanf:"labels" yaml:"labels"`
 }
 
 // IngressPath represents the definition for `paths` specified in Ingress.
 type IngressPath struct {
-	Path    string `koanf:"path"`
-	Service string `koanf:"service"`
-	Port    string `koanf:"port"`
+	Path    string `koanf:"path" yaml:"path"`
+	Service string `koanf:"service" yaml:"service"`
+	Port    string `koanf:"port" yaml:"port"`
 }
 
 // Annotation represents the name of annotation value.
 type Annotation struct {
-	Name string `koanf:"name"`
+	Name string `koanf:"name" yaml:"name"`
 }
 
 // Port represents the structure for defining ports in services
 type Port struct {
-	Name       string `koanf:"name"`
-	Port       string `koanf:"port"`
-	TargetPort string `koanf:"targetPort"`
-	Protocol   string `koanf:"protocol"`
+	Name       string `koanf:"name" yaml:"name"`
+	Port       string `koanf:"port" yaml:"port"`
+	TargetPort string `koanf:"targetPort" yaml:"targetPort"`
+	Protocol   string `koanf:"protocol" yaml:"protocol"`
 }
 
 // Identifer represents the kv pair for a label.
 type Identifer struct {
-	Name string `koanf:"name"`
+	Name string `koanf:"name" yaml:"name"`
 }
 
 // EnvVar represents the env variables to be used in Pod definition.
 type EnvVar struct {
-	Name  string `koanf:"name"`
-	Value string `koanf:"value"`
+	Name  string `koanf:"name" yaml:"name"`
+	Value string `koanf:"value" yaml:"value"`
 }
 
 // VolumeMount represents the options for mounting volume in a pod.
 type VolumeMount struct {
-	MountPath string `koanf:"mountPath"`
-	SubPath   string `koanf:"subPath"`
-	Name      string `koanf:"name"`
+	MountPath string `koanf:"mountPath" yaml:"mountPath"`
+	SubPath   string `koanf:"subPath" yaml:"subPath"`
+	Name      string `koanf:"name" yaml:"name"`
 }
 
-// Volume represnts the option for Volume attached to a pod. Currently only supports
+// Volume represents the option for Volume attached to a pod. Currently only supports
 // ConfigMap as the source.
 type Volume struct {
-	Name string `koanf:"name"`
+	Name string `koanf:"name" yaml:"name"`
 }
 
 // Resource is a set of common actions performed on Resource Types.
