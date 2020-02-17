@@ -34,17 +34,17 @@
           timeoutSeconds: 7
         {{- end}}
         {{- if .LivenessProbePort}}
-          livenessProbe:
-            httpGet:
-              path: {{.LivenessProbePath}}
-              port: {{.LivenessProbePort}}
-              httpHeaders:
-              - name: X-Kubernetes
-                value: livenessProbe
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            timeoutSeconds: 7
-            failureThreshold: 5
+        livenessProbe:
+          httpGet:
+            path: {{.LivenessProbePath}}
+            port: {{.LivenessProbePort}}
+            httpHeaders:
+            - name: X-Kubernetes
+              value: livenessProbe
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 7
+          failureThreshold: 5
         {{- end}}
         {{- if .EnvSecret}}
         envFrom:
