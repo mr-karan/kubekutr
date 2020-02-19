@@ -5,6 +5,8 @@
 
 🍪✂️ _Cookie cutter for Kubernetes resource manifests_
 
+(_Pronounced as "cube cutter"_)
+
 `kubekutr` lets you quickly scaffold a [bespoke](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#bespoke-configuration) configuration for Kubernetes resource manifests with an _opinionated_ GitOps directory structure. `kubekutr` is ideally meant to be used in combination with [kustomize](https://github.com/kubernetes-sigs/kustomize).
 
 Read the blog [post](https://mrkaran.dev/posts/introducing-kubekutr/) for more info. 
@@ -44,12 +46,26 @@ GLOBAL OPTIONS:
    --version, -v             print the version
 ```
 
+### Initialise a new project
+
+- **Using Prompt**
+
+`kubekutr init`
+
+[![asciicast](https://asciinema.org/a/303080.png)](https://asciinema.org/a/303080)
+
+- **Using default config**
+
+`kubekutr init --default`
+
+Either of these options create a config file `kubekutr.sample.yml` in your current working directory. You can edit this file further to suit your needs and scaffold a project using this.
+
 ### Scaffold a new project
 
 ```bash
 # create a new base
 
-$ kubekutr -c config.yml scaffold -o myproject
+$ kubekutr --config kubekutr.sample.yml scaffold -o myproject
 
 # `myproject` is created with the GitOps structure
 myproject
@@ -76,19 +92,19 @@ You can see a sample configuration file [here](templates/config.sample.yml).
         -   **containers**: List of containers in a Pod
             - **name**: Unique name for a container
             - **image**: Docker image name
-        -   **ports**:
-            - **name**: Unique identifier for the port.
-            - **port**: Port address/name for port exposed on container.
-            - **createService**: (_False/True_): Automatically create a `Service` manifest based on the port settings of container.
-        - **command**: Entrypoint array
-        - **args**: Arguments to the entrypoint
-        - **envVars**: List of environment variables to set in the container
-            - **name**: Name of environment variable
-            - **value**: Value of environment variable
-        - **volumeMounts**: Pod volumes to mount into the container's filesystem
-            - **name**: Name of Volume
-            - **mountPath**: Path within the container at which the volume should be mounted
-            - **subPath**: Path within the volume from which the container's volume should be mounted.
+            -   **ports**:
+                - **name**: Unique identifier for the port.
+                - **port**: Port address/name for port exposed on container.
+                - **createService**: (_False/True_): Automatically create a `Service` manifest based on the port settings of container.
+            - **command**: Entrypoint array
+            - **args**: Arguments to the entrypoint
+            - **envVars**: List of environment variables to set in the container
+                - **name**: Name of environment variable
+                - **value**: Value of environment variable
+            - **volumeMounts**: Pod volumes to mount into the container's filesystem
+                - **name**: Name of Volume
+                - **mountPath**: Path within the container at which the volume should be mounted
+                - **subPath**: Path within the volume from which the container's volume should be mounted.
         -   **volumes**: List of volumes defined for a deployment
                 - **name**: Name of Volume
 
@@ -120,6 +136,9 @@ You can see a sample configuration file [here](templates/config.sample.yml).
         -   **labels**: (reference above)
         -   **annotations**:
             - **name**:  Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata
+
+## ⭐️ Show your support
+Give a ⭐️ if this project helped you!
 
 ## Contributing
 
