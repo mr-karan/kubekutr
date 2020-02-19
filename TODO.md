@@ -38,7 +38,9 @@
 
 - [x] Initialise a git repo with default config (probably flag)
 
-- [ ] Explore Kustomize functions (???)
+- [x] Add prompt to generate the config.
+
+- [x] Explore Kustomize functions (???)
 
 - [ ] RBAC resources manifests
 
@@ -49,8 +51,6 @@
 - [ ] Write tests
 
 - [ ] Package manager releases
-
-- [ ] Add prompt to generate the config.
 
 - [ ] Kubekutr webpage
 
