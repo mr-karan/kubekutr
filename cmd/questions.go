@@ -79,7 +79,7 @@ func gatherDeploymentsInfo() ([]models.Deployment, error) {
 			Message: "How many pod replicas do you want to run?",
 			Help:    "Specify replica count for the deployment.",
 			Default: "1",
-		}, &dep.Name, survey.WithValidator(isInt)))
+		}, &dep.Replicas, survey.WithValidator(isInt)))
 		exitOnInterrupt(survey.AskOne(&survey.Input{
 			Message: "How many containers do you want to run in one pod?",
 			Help:    "Containers form a part of a Pod. Typically each Pod is assosicated with one container.",
@@ -155,7 +155,8 @@ func gatherContainerInfo() (models.Container, error) {
 	}
 	wantReadinessCheck := false
 	exitOnInterrupt(survey.AskOne(&survey.Confirm{
-		Message: "Do you want to specify any periodic probe for container service readiness. Container will be removed from service endpoints if the probe fails.",
+		Message: "Do you want to specify any periodic probe for container service readiness.",
+		Help:    "Container willContainer will be removed from service endpoints if the probe fails.",
 		Default: false,
 	}, &wantReadinessCheck))
 	if wantReadinessCheck {
@@ -170,7 +171,8 @@ func gatherContainerInfo() (models.Container, error) {
 	}
 	wantLivenessCheck := false
 	exitOnInterrupt(survey.AskOne(&survey.Confirm{
-		Message: "Do you want to specify any periodic probe for container liveness. Container will be restarted if the probe fails.",
+		Message: "Do you want to specify any periodic probe for container liveness.",
+		Help:    "Container will be restarted if the probe fails.",
 		Default: false,
 	}, &wantLivenessCheck))
 	if wantLivenessCheck {

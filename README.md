@@ -52,7 +52,7 @@ GLOBAL OPTIONS:
 
 `kubekutr init`
 
-[![asciicast](https://asciinema.org/a/303080.png)](https://asciinema.org/a/303080)
+[![asciicast](https://asciinema.org/a/303176.png)](https://asciinema.org/a/303176)
 
 - **Using default config**
 

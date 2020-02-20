@@ -42,9 +42,12 @@
 
 - [x] Explore Kustomize functions (???)
 
-- [ ] RBAC resources manifests
+- [ ] Improve logging experience
 
-- [ ] Add Jobs/Crons resource manifests
+- [ ] Add more resources manifests
+  - [ ] RBAC
+  - [ ] Crons
+  - [ ] Jobs
 
 - [ ] Generate `kustomization.yaml` too
 

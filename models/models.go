@@ -87,10 +87,10 @@ type Annotation struct {
 
 // Port represents the structure for defining ports in services
 type Port struct {
-	Name       string `koanf:"name" yaml:"name"`
-	Port       string `koanf:"port" yaml:"port"`
-	TargetPort string `koanf:"targetPort" yaml:"targetPort"`
-	Protocol   string `koanf:"protocol" yaml:"protocol"`
+	Name       string `koanf:"name" yaml:"name,omitempty"`
+	Port       string `koanf:"port" yaml:"port,omitempty"`
+	TargetPort string `koanf:"targetPort" yaml:"targetPort,omitempty"`
+	Protocol   string `koanf:"protocol" yaml:"protocol,omitempty"`
 }
 
 // Identifer represents the kv pair for a label.
