@@ -9,11 +9,13 @@
 
 `kubekutr` lets you quickly scaffold a [bespoke](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#bespoke-configuration) configuration for Kubernetes resource manifests with an _opinionated_ GitOps directory structure. `kubekutr` is ideally meant to be used in combination with [kustomize](https://github.com/kubernetes-sigs/kustomize).
 
-Read the blog [post](https://mrkaran.dev/posts/introducing-kubekutr/) for more info. 
+![Overview image](docs/overview.png)
 
 ## Motivation
 
-`kustomize` is a great tool when it comes to declarative application management for manifests. There still exists a lot of manual scaffolding to create a [base](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#base) which defines your application state. `kubekutr` aims to solve the issue of writing these manifests manually by providing a very simple Go template rendering engine. 
+`kustomize` is a great tool when it comes to declarative application management for manifests. There still exists a lot of manual scaffolding to create a [base](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#base) which defines your application state. `kubekutr` aims to solve the issue of writing these manifests manually by providing a very simple Go template rendering engine.
+
+Read the blog [post](https://mrkaran.dev/posts/introducing-kubekutr/) for more information.
 
 ### Non Goals
 
