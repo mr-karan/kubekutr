@@ -25,7 +25,7 @@ Read the blog [post](https://mrkaran.dev/posts/introducing-kubekutr/) for more i
 
 ```shell
 $ cd "$(mktemp -d)"
-$ curl -sL "https://github.com/mr-karan/kubekutr/releases/download/0.8.1/kubekutr_0.8.1_$(uname)_amd64.tar.gz" | tar xz
+$ curl -sL "https://github.com/mr-karan/kubekutr/releases/download/0.8.2/kubekutr_0.8.2_$(uname)_amd64.tar.gz" | tar xz
 $ mv kubekutr /usr/local/bin
 # kubekutr should be available now in your $PATH
 $ kubekutr --version
