@@ -21,6 +21,16 @@ Read the blog [post](https://mrkaran.dev/posts/introducing-kubekutr/) for more i
 
 `kubekutr` doesn't aim to provide all 1000s of options of templating `yaml` files. More users mean every user will want to customise the `yaml` in some way or the other and this is where `kustomize` comes into picture. Users of `kubekutr` are encourage to use `kustomize` to create _variants_ on top of `bases` to apply any kind of customisation. `kubekutr`'s **only** goal is to create the _base_ directory.
 
+## Installation
+
+```shell
+$ cd "$(mktemp -d)"
+$ curl -sL "https://github.com/mr-karan/kubekutr/releases/download/0.8.1/kubekutr_0.8.1_$(uname)_amd64.tar.gz" | tar xz
+$ mv kubekutr /usr/local/bin
+# kubekutr should be available now in your $PATH
+$ kubekutr --version
+```
+
 ## Usage
 
 ```shell
