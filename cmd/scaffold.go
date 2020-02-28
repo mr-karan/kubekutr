@@ -39,6 +39,9 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 				if cont.CreateService {
 					ports := []models.Port{}
 					for _, port := range cont.Ports {
+						if port.Name == "" {
+							port.Name = cont.Name + defaultPortName
+						}
 						ports = append(ports, models.Port{
 							Name:       port.Name,
 							Port:       port.Port,

@@ -16,6 +16,7 @@ const (
 	defaultMemoryRequests = "128Mi"
 	defaultCPULimit       = "500m"
 	defaultCPURequests    = "250m"
+	defaultPortName       = "-port"
 )
 
 // isInt checks if value is integer
