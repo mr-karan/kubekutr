@@ -68,8 +68,9 @@ workloads:
           - name: postgres
             image: 'postgres:latest'
             envSecret: postgres
-            portInt: 5432
-            portName: db-port
+            ports:
+            - name: app-port
+              port: 3000
             envVars:
               - name: POSTGRES_DB
                 value: sample

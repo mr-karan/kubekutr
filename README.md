@@ -70,7 +70,7 @@ GLOBAL OPTIONS:
 
 `kubekutr init --default`
 
-Either of these options create a config file `kubekutr.sample.yml` in your current working directory. You can edit this file further to suit your needs and scaffold a project using this.
+Either of these options create a config file `kubekutr.yml` in your current working directory. You can edit this file further to suit your needs and scaffold a project using this.
 
 ### Scaffold a new project
 

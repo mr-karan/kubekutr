@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	defaultConfigName = "kubekutr.sample.yml"
+	defaultConfigName = "kubekutr.yml"
 )
 
 // InitProject initializes git repo and copies a sample config
