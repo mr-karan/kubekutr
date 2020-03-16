@@ -77,7 +77,7 @@ Either of these options create a config file `kubekutr.yml` in your current work
 ```bash
 # create a new base
 
-$ kubekutr --config kubekutr.sample.yml scaffold -o myproject
+$ kubekutr --config kubekutr.yml scaffold -o myproject
 
 # `myproject` is created with the GitOps structure
 myproject

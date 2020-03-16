@@ -17,7 +17,7 @@ type Workload struct {
 // Deployment represents configuration options for the Deployment spec.
 type Deployment struct {
 	Name       string      `koanf:"name" yaml:"name"`
-	Replicas   string      `koanf:"replicas" yaml:"replicas"`
+	Replicas   int         `koanf:"replicas" yaml:"replicas"`
 	Containers []Container `koanf:"containers" yaml:"containers"`
 	Labels     []Identifer `koanf:"labels" yaml:"labels"`
 	Volumes    []Volume    `koanf:"volumes" yaml:"volumes"`
@@ -88,7 +88,7 @@ type Annotation struct {
 // Port represents the structure for defining ports in services
 type Port struct {
 	Name       string `koanf:"name" yaml:"name,omitempty"`
-	Port       string `koanf:"port" yaml:"port,omitempty"`
+	Port       int    `koanf:"port" yaml:"port,omitempty"`
 	TargetPort string `koanf:"targetPort" yaml:"targetPort,omitempty"`
 	Protocol   string `koanf:"protocol" yaml:"protocol,omitempty"`
 }
