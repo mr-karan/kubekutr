@@ -22,10 +22,7 @@ jobs:
 
       - name: Build
         working-directory: ./docs
-        run: |
-          export BASE_URL="https://mr-karan.github.io/kubekutr"
-          hugo --gc --minify --baseURL "${BASE_URL}"
-          wget -O ./public/index.html "${BASE_URL}/index.html" || true
+        run: hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
