@@ -1,4 +1,4 @@
-baseURL = "https://kubekutr.dev/"
+# baseURL = "https://kubekutr.dev/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "ananke"

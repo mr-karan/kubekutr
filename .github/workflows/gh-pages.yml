@@ -21,10 +21,16 @@ jobs:
           # extended: true
 
       - name: Build
-        run: cd docs && hugo -D
+        working-directory: ./docs
+        run: |
+          export BASE_URL="https://mr-karan.github.io/kubekutr"
+          hugo --gc --minify --baseURL "${BASE_URL}"
+          wget -O ./public/index.html "${BASE_URL}/index.html" || true
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/public
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
