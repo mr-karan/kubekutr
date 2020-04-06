@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Name }}
+  {{- if .Labels}}
+  labels:
+    {{- range .Labels}}
+    {{.Name}}
+    {{- end}}
+  {{- end}}
+spec:
+  replicas: {{.Replicas}}
+  selector:
+    matchLabels:
+      {{- range .Labels}}
+      {{.Name}}
+      {{- end}}
+  template:
+    metadata:
+      labels:
+        {{- range .Labels}}
+        {{.Name}}
+        {{- end}}
+    spec:
+      containers:
+      {{- template "containers" . }}
+      {{- if .Volumes}}
+      volumes:
+        {{- range .Volumes}}
+        - name: {{.Name}}
+        {{- end}}
+      {{- end}}
