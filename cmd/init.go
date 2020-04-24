@@ -10,8 +10,8 @@ import (
 	"zerodha.tech/kubekutr/models"
 )
 
-const (
-	defaultConfigName = "kubekutr.yml"
+var (
+	configName = "kubekutr.yml"
 )
 
 // InitProject initializes git repo and copies a sample config
@@ -26,6 +26,10 @@ func (hub *Hub) InitProject(config models.Config) cli.Command {
 				Name:  "default, d",
 				Usage: "Use the default config file",
 			},
+			cli.StringFlag{
+				Name:  "output, o",
+				Usage: "Config file name.",
+			},
 		},
 	}
 }
@@ -38,18 +42,25 @@ func (hub *Hub) init(cliCtx *cli.Context) error {
 		return fmt.Errorf("error while initializing git repo: %v", err)
 	}
 	var configFile []byte
+	output := cliCtx.String("output")
+	if output != "" {
+		configName = output
+	}
 	if cliCtx.Bool("default") {
 		configFile, err = hub.Fs.Read("templates/config.sample.yml")
 		if err != nil {
 			return fmt.Errorf("error reading default config file template: %v", err)
 		}
-		err = createDefaultConfig(configFile, defaultConfigName)
+		err = createDefaultConfig(configFile, configName)
 		if err != nil {
 			return fmt.Errorf("error creating default config: %v", err)
 		}
 	} else {
 		workloads := []models.Workload{}
 		workloadsLen := gatherBasicInfo()
+		if output == "" {
+			configName = gatherOutputFileInfo()
+		}
 		// Iterate for all workloads
 		for i := 0; i < workloadsLen; i++ {
 			wd, err := gatherWorkloadsInfo()
@@ -65,11 +76,11 @@ func (hub *Hub) init(cliCtx *cli.Context) error {
 		if err != nil {
 			return fmt.Errorf("Error while marshalling yaml: %v", err)
 		}
-		err = createDefaultConfig(configFile, defaultConfigName)
+		err = createDefaultConfig(configFile, configName)
 		if err != nil {
 			return fmt.Errorf("error creating default config: %v", err)
 		}
 	}
-	log.Printf("Congrats! Your default configuration is created at %s", defaultConfigName)
+	log.Printf("Congrats! Your default configuration is created at %s", configName)
 	return nil
 }
