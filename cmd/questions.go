@@ -189,6 +189,19 @@ func gatherContainerInfo() (models.Container, error) {
 	return ctr, nil
 }
 
+func gatherOutputFileInfo() string {
+	var (
+		fileName = "kubekutr.yml"
+	)
+	// Gather information from user.
+	exitOnInterrupt(survey.AskOne(&survey.Input{
+		Message: "What should be the config file name?",
+		Help:    "Override the default config filename",
+		Default: "kubekutr.yml",
+	}, &fileName, survey.WithValidator(survey.Required)))
+	return fileName
+}
+
 func exitOnInterrupt(err error) error {
 	if err == terminal.InterruptErr {
 		fmt.Println("quitting kubekutr. bye...")
