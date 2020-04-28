@@ -95,6 +95,23 @@ myproject
         |-- db-statefulset.yml
 ```
 
+#### Generate kustomization.yml
+
+If you'd like to generate a super simple, default `kustomization.yml` in `base` folder at the time of scaffolding, you can specify `--kustomize` or `-k` with `scaffold`:
+
+```sh
+kubekutr --config kubekutr.yml scaffold -o myproject -k
+```
+
+```yml
+resources:
+  - app/app-service.yml
+  - app/app-deployment.yml
+  - app/app-service.yml
+  - app/app-ingress.yml
+  - second-app/db-statefulset.yml
+```
+
 ## Configuration
 
 You can see a sample configuration file [here](templates/config.sample.yml).
