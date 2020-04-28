@@ -17,9 +17,9 @@ workloads:
             command: '["./myapp"]'
             args: '["--config", "--hello"]'
             cpuLimits: 800m
-            memoryLimits: 1500mi
+            memoryLimits: 1500Mi
             cpuRequests: 400m
-            memoryRequests: 750mi
+            memoryRequests: 750Mi
             readinessPort: 3000
             readinessPath: /api/readiness
             livenessPort: 3000
@@ -78,8 +78,8 @@ workloads:
               - name: db-dir
                 mount: /var/lib/postgres
             cpuLimits: 800m
-            memoryLimits: 1500mi
+            memoryLimits: 1500Mi
             cpuRequests: 400m
-            memoryRequests: 750mi
+            memoryRequests: 750Mi
         volumes:
           - name: db-dir
