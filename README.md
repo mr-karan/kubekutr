@@ -1,7 +1,6 @@
 # kubekutr
 
 <img src="logo.png" alt="drawing" width="400"/>
-<!-- ![](logo.png) -->
 
 🍪✂️ _Cookie cutter for Kubernetes resource manifests_
 
@@ -156,6 +155,7 @@ You can see a sample configuration file [here](templates/config.sample.yml).
             - **name**:  Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata
 
 ## ⭐️ Show your support
+
 Give a ⭐️ if this project helped you!
 
 ## Contributing
