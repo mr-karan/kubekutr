@@ -90,6 +90,7 @@ type Port struct {
 	Name       string `koanf:"name" yaml:"name,omitempty"`
 	Port       int    `koanf:"port" yaml:"port,omitempty"`
 	TargetPort string `koanf:"targetPort" yaml:"targetPort,omitempty"`
+	NodePort   string `koanf:"nodePort" yaml:"nodePort,omitempty"`
 	Protocol   string `koanf:"protocol" yaml:"protocol,omitempty"`
 }
 

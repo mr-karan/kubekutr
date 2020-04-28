@@ -16,13 +16,13 @@ build:
 	go build -o ${BIN} -ldflags="-X 'main.buildVersion=${VERSION}' -X 'main.buildDate=${BUILD_DATE}'"
 	stuffbin -a stuff -in ${BIN} -out ${BIN} ${STATIC}
 
-test-local:
+test-local: fresh
 	./${BIN} -c config.yml s
 
 run:
 	./${BIN}
 
-fresh: clean build run
+fresh: clean build
 
 test:
 	go test

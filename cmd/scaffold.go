@@ -20,6 +20,10 @@ func (hub *Hub) ScaffoldProject(config models.Config) cli.Command {
 				Name:  "output, o",
 				Usage: "Path to manifests output directory for `PROJECT`. Outputs to STDOUT if not provided",
 			},
+			cli.BoolFlag{
+				Name:  "kustomize, k",
+				Usage: "Set to true if you want to include a default kustomization.yml",
+			},
 		},
 	}
 }
@@ -28,6 +32,7 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 	var (
 		projectDir = utils.GetRootDir(cliCtx.String("output"))
 	)
+	var resourceNames []string
 	// Create deployments
 	if len(hub.Config.Workloads) == 0 {
 		return fmt.Errorf(fmt.Sprintf("No workloads specified in configuration. Please check the config syntax."))
@@ -77,6 +82,15 @@ func (hub *Hub) scaffold(cliCtx *cli.Context) error {
 		if err != nil {
 			return err
 		}
+		// Collect resource names
+		for _, res := range resources {
+			name := fmt.Sprintf("%s/%s-%s.yml", workload.Name, res.GetMetaData().Name, res.GetMetaData().Type)
+			resourceNames = append(resourceNames, name)
+		}
+	}
+	// Create Kustomization
+	if cliCtx.Bool("kustomize") {
+		utils.CreateKustomization(projectDir, resourceNames, hub.Fs)
 	}
 	return nil
 }

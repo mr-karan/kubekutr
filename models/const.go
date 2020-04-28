@@ -16,4 +16,5 @@ var (
 	DeploymentTemplatePath  = fmt.Sprintf("%s/deployment.tmpl", TemplatesDir)
 	ServiceTemplatePath     = fmt.Sprintf("%s/service.tmpl", TemplatesDir)
 	StatefulsetTemplatePath = fmt.Sprintf("%s/statefulset.tmpl", TemplatesDir)
+	KustomizeTemplatePath   = fmt.Sprintf("%s/kustomization.tmpl", TemplatesDir)
 )

@@ -17,6 +17,9 @@ spec:
     name: {{.Name}}
     {{- end}}
     targetPort: {{.TargetPort}}
+    {{- if .NodePort}}
+    nodePort: {{.NodePort}}
+    {{- end}}
     protocol: {{- if .Protocol }} {{.Protocol}} {{- else }} TCP {{- end}}
   {{- end}}
   type: {{- if .Type }} {{.Type}} {{- else }} ClusterIP {{- end}}

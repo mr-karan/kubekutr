@@ -1,7 +1,6 @@
 # kubekutr
 
 <img src="logo.png" alt="drawing" width="400"/>
-<!-- ![](logo.png) -->
 
 🍪✂️ _Cookie cutter for Kubernetes resource manifests_
 
@@ -96,6 +95,23 @@ myproject
         |-- db-statefulset.yml
 ```
 
+#### Generate kustomization.yml
+
+If you'd like to generate a super simple, default `kustomization.yml` in `base` folder at the time of scaffolding, you can specify `--kustomize` or `-k` with `scaffold`:
+
+```sh
+kubekutr --config kubekutr.yml scaffold -o myproject -k
+```
+
+```yml
+resources:
+  - app/app-service.yml
+  - app/app-deployment.yml
+  - app/app-service.yml
+  - app/app-ingress.yml
+  - second-app/db-statefulset.yml
+```
+
 ## Configuration
 
 You can see a sample configuration file [here](templates/config.sample.yml).
@@ -156,6 +172,7 @@ You can see a sample configuration file [here](templates/config.sample.yml).
             - **name**:  Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata
 
 ## ⭐️ Show your support
+
 Give a ⭐️ if this project helped you!
 
 ## Contributing
