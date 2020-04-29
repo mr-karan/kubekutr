@@ -5,11 +5,12 @@ func (dep Deployment) GetMetaData() ResourceMeta {
 		Name:         dep.Name,
 		TemplatePath: DeploymentTemplatePath,
 		Config: map[string]interface{}{
-			"Name":       dep.Name,
-			"Replicas":   dep.Replicas,
-			"Containers": dep.Containers,
-			"Labels":     dep.Labels,
-			"Volumes":    dep.Volumes,
+			"Name":         dep.Name,
+			"Replicas":     dep.Replicas,
+			"Containers":   dep.Containers,
+			"Labels":       dep.Labels,
+			"NodeSelector": dep.NodeSelector,
+			"Volumes":      dep.Volumes,
 		},
 		Type: Deployments,
 	}

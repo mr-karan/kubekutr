@@ -31,3 +31,9 @@ spec:
         - name: {{.Name}}
         {{- end}}
       {{- end}}
+      {{- if .NodeSelector}}
+      nodeSelector:
+        {{- range .NodeSelector}}
+        {{.Name}}
+        {{- end}}
+      {{- end}}

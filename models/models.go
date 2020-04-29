@@ -16,20 +16,22 @@ type Workload struct {
 
 // Deployment represents configuration options for the Deployment spec.
 type Deployment struct {
-	Name       string      `koanf:"name" yaml:"name"`
-	Replicas   int         `koanf:"replicas" yaml:"replicas"`
-	Containers []Container `koanf:"containers" yaml:"containers"`
-	Labels     []Identifer `koanf:"labels" yaml:"labels"`
-	Volumes    []Volume    `koanf:"volumes" yaml:"volumes"`
+	Name         string      `koanf:"name" yaml:"name"`
+	Replicas     int         `koanf:"replicas" yaml:"replicas"`
+	Containers   []Container `koanf:"containers" yaml:"containers"`
+	Labels       []Identifer `koanf:"labels" yaml:"labels"`
+	NodeSelector []Identifer `koanf:"nodeSelector" yaml:"nodeSelector"`
+	Volumes      []Volume    `koanf:"volumes" yaml:"volumes"`
 }
 
 // StatefulSet represents configuration options for StatefulSet spec.
 type StatefulSet struct {
-	Name        string      `koanf:"name" yaml:"name"`
-	ServiceName string      `koanf:"serviceName" yaml:"serviceName"`
-	Containers  []Container `koanf:"containers" yaml:"containers"`
-	Labels      []Identifer `koanf:"labels" yaml:"labels"`
-	Volumes     []Volume    `koanf:"volumes" yaml:"volumes"`
+	Name         string      `koanf:"name" yaml:"name"`
+	ServiceName  string      `koanf:"serviceName" yaml:"serviceName"`
+	Containers   []Container `koanf:"containers" yaml:"containers"`
+	Labels       []Identifer `koanf:"labels" yaml:"labels"`
+	NodeSelector []Identifer `koanf:"nodeSelector" yaml:"nodeSelector"`
+	Volumes      []Volume    `koanf:"volumes" yaml:"volumes"`
 }
 
 // Container represents configuration options for the Container spec in a Pod definition.

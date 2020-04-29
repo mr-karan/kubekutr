@@ -19,6 +19,9 @@ build:
 test-local: fresh
 	./${BIN} -c config.yml s
 
+validate-local: fresh
+	./${BIN} -c config.yml s | kubeval
+
 run:
 	./${BIN}
 
