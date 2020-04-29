@@ -76,7 +76,7 @@ workloads:
                 value: sample
             volumeMounts:
               - name: db-dir
-                mount: /var/lib/postgres
+                mountPath: /var/lib/postgres
             cpuLimits: 800m
             memoryLimits: 1500Mi
             cpuRequests: 400m
