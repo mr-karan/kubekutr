@@ -8,8 +8,8 @@
         {{- if .Args}}
         args: {{.Args}}
         {{- end}}
-        {{- range .Ports}}
         ports:
+        {{- range .Ports}}
         - containerPort: {{.Port}}
           name: {{.Name}}
         {{- end}}

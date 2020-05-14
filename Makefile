@@ -20,7 +20,7 @@ test-local: fresh
 	./${BIN} -c config.yml s
 
 validate-local: fresh
-	./${BIN} -c config.yml s | kubeval
+	./${BIN} -c config.yml s | kubeval --strict
 
 run:
 	./${BIN}
