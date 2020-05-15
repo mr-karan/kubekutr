@@ -49,7 +49,7 @@
   - [ ] Crons
   - [ ] Jobs
 
-- [ ] Generate `kustomization.yaml` too
+- [x] Generate `kustomization.yaml` too
 
 - [ ] Write tests
 
