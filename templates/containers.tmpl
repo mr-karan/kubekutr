@@ -8,10 +8,12 @@
         {{- if .Args}}
         args: {{.Args}}
         {{- end}}
+        {{- if .Ports}}
         ports:
         {{- range .Ports}}
         - containerPort: {{.Port}}
           name: {{.Name}}
+        {{- end}}
         {{- end}}
         resources:
           requests:
