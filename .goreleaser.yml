@@ -22,3 +22,13 @@ archives:
     files:
       - README.md
       - LICENSE
+
+snapcrafts:
+  - name_template: '{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    summary: Cookie cutter templating tool for scaffolding K8s manifests.
+    description: |
+      kubekutr lets you quickly scaffold a bespoke configuration for Kubernetes resource manifests with an opinionated GitOps
+      directory structure.
+    grade: stable
+    confinement: strict
+    publish: true

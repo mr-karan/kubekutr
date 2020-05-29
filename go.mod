@@ -6,7 +6,7 @@ require (
 	github.com/AlecAivazis/survey/v2 v2.0.5
 	github.com/go-yaml/yaml v2.1.0+incompatible
 	github.com/knadh/koanf v0.6.0
-	github.com/knadh/stuffbin v1.0.0
+	github.com/knadh/stuffbin v1.1.0
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/urfave/cli v1.22.2
