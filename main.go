@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -40,6 +41,7 @@ func initFileSystem(binPath string) (stuffbin.FileSystem, error) {
 		panic(err)
 	}
 	exPath := filepath.Dir(ex)
+	fmt.Println(exPath)
 	fs, err := stuffbin.UnStuff(filepath.Join(exPath, filepath.Base(os.Args[0])))
 	if err != nil {
 		return nil, err
@@ -71,6 +73,7 @@ func main() {
 	fs, err := initFileSystem(os.Args[0])
 	if err != nil {
 		logger.Errorf("error reading stuffed binary: %v", err)
+		os.Exit(1)
 	}
 	// Initialize hub.
 	hub := cmd.NewHub(logger, fs, buildVersion)
@@ -81,7 +84,7 @@ func main() {
 		hub.InitProject(hub.Config),
 	}
 	// Run the app.
-	hub.Logger.Info("Starting kubekutr...")
+	hub.Logger.Info("Starting kubekutr......")
 	err = app.Run(os.Args)
 	if err != nil {
 		logger.Errorf("Something terrbily went wrong: %s", err)
