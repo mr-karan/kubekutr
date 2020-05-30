@@ -53,7 +53,7 @@
 
 - [ ] Write tests
 
-- [ ] Package manager releases
+- [x] Package manager releases
 
 - [ ] Kubekutr webpage
 
