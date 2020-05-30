@@ -24,6 +24,8 @@ Read the blog [post](https://mrkaran.dev/posts/introducing-kubekutr/) for more i
 
 ### Using snap
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/kubekutr)
+
 ```sh
 $ sudo snap install kubekutr
 ```
