@@ -11,7 +11,7 @@
         {{- if .Ports}}
         ports:
         {{- range .Ports}}
-        - containerPort: {{.Port}}
+        - containerPort: {{- if .TargetPort }} {{.TargetPort}} {{- else }} {{.Port}} {{- end}}
           name: {{.Name}}
         {{- end}}
         {{- end}}
