@@ -15,13 +15,27 @@
           name: {{.Name}}
         {{- end}}
         {{- end}}
+        {{- if or (or .RequestsMemory .RequestsCPU) (or .LimitsMemory .LimitsCPU)}}
         resources:
+          {{- if or .RequestsMemory .RequestsCPU}}
           requests:
-            memory: {{- if .RequestsMemory }} {{.RequestsMemory}} {{- else }} 128Mi {{- end}}
-            cpu: {{- if .RequestsCPU }} {{.RequestsCPU}} {{- else }} 250m {{- end}}
+            {{- if .RequestsMemory}}
+            memory: {{.RequestsMemory}}
+            {{- end}}
+            {{- if .RequestsCPU}}
+            cpu: {{.RequestsCPU}}
+            {{- end}}
+          {{- end}}
+          {{- if or .LimitsMemory .LimitsCPU}}
           limits:
-            memory: {{- if .LimitsMemory }} {{.LimitsMemory}} {{- else }} 256Mi {{- end}}
-            cpu: {{- if .LimitsCPU }} {{.LimitsCPU}} {{- else }} 500m {{- end}}
+            {{- if .LimitsMemory}}
+            memory: {{.LimitsMemory}}
+            {{- end}}
+            {{- if .LimitsCPU}}
+            cpu: {{.LimitsCPU}}
+            {{- end}}
+          {{- end}}
+        {{- end}}
         {{- if .ReadinessProbePort}}
         readinessProbe:
           httpGet:
