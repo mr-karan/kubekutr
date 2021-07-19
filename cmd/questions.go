@@ -8,7 +8,7 @@ import (
 
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/AlecAivazis/survey/v2/terminal"
-	"zerodha.tech/kubekutr/models"
+	"github.com/mr-karan/kubekutr/models"
 )
 
 const (

@@ -7,7 +7,7 @@ import (
 	"github.com/knadh/stuffbin"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	"zerodha.tech/kubekutr/cmd"
+	"github.com/mr-karan/kubekutr/cmd"
 )
 
 var (

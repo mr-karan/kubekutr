@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/knadh/stuffbin"
-	"zerodha.tech/kubekutr/models"
+	"github.com/mr-karan/kubekutr/models"
 )
 
 // CreateResource fetches metadata about the resource and produces the manifest.

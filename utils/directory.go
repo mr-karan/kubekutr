@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 
 	"github.com/knadh/stuffbin"
-	"zerodha.tech/kubekutr/models"
+	"github.com/mr-karan/kubekutr/models"
 )
 
 // GetRootDir returns a relative path to the root of Gitops directory.
