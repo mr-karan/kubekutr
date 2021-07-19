@@ -6,8 +6,8 @@ import (
 	"os/exec"
 
 	"github.com/go-yaml/yaml"
+	"github.com/mr-karan/kubekutr/models"
 	"github.com/urfave/cli"
-	"zerodha.tech/kubekutr/models"
 )
 
 var (
@@ -47,7 +47,7 @@ func (hub *Hub) init(cliCtx *cli.Context) error {
 		configName = output
 	}
 	if cliCtx.Bool("default") {
-		configFile, err = hub.Fs.Read("templates/config.sample.yml")
+		configFile, err = hub.Fs.ReadFile("templates/config.sample.yml")
 		if err != nil {
 			return fmt.Errorf("error reading default config file template: %v", err)
 		}

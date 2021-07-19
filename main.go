@@ -1,13 +1,12 @@
 package main
 
 import (
+	"embed"
 	"os"
-	"path/filepath"
 
-	"github.com/knadh/stuffbin"
+	"github.com/mr-karan/kubekutr/cmd"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	"zerodha.tech/kubekutr/cmd"
 )
 
 var (
@@ -32,20 +31,8 @@ func initLogger(verbose bool) *logrus.Logger {
 	return logger
 }
 
-// initFileSystem initializes the stuffbin FileSystem to provide
-// access to bunded static assets to the app.
-func initFileSystem(binPath string) (stuffbin.FileSystem, error) {
-	ex, err := os.Executable()
-	if err != nil {
-		panic(err)
-	}
-	exPath := filepath.Dir(ex)
-	fs, err := stuffbin.UnStuff(filepath.Join(exPath, filepath.Base(os.Args[0])))
-	if err != nil {
-		return nil, err
-	}
-	return fs, nil
-}
+//go:embed templates
+var templateFS embed.FS
 
 func main() {
 	// Intialize new CLI app
@@ -66,15 +53,9 @@ func main() {
 	var (
 		logger = initLogger(true)
 	)
-	// Initialize the static file system into which all
-	// required static assets (.css, .js files etc.) are loaded.
-	fs, err := initFileSystem(os.Args[0])
-	if err != nil {
-		logger.Errorf("error reading stuffed binary: %v", err)
-		os.Exit(1)
-	}
+
 	// Initialize hub.
-	hub := cmd.NewHub(logger, fs, buildVersion)
+	hub := cmd.NewHub(logger, templateFS, buildVersion)
 
 	// Register commands.
 	app.Commands = []cli.Command{
@@ -83,8 +64,7 @@ func main() {
 	}
 	// Run the app.
 	hub.Logger.Info("Starting kubekutr...")
-	err = app.Run(os.Args)
-	if err != nil {
+	if err := app.Run(os.Args); err != nil {
 		logger.Errorf("Something terrbily went wrong: %s", err)
 	}
 }

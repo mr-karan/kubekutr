@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/urfave/cli"
-	"zerodha.tech/kubekutr/models"
-	"zerodha.tech/kubekutr/utils"
+	"github.com/mr-karan/kubekutr/models"
+	"github.com/mr-karan/kubekutr/utils"
 )
 
 // ScaffoldProject creates an opinioated GitOps structure for Kubernetes manifests.

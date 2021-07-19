@@ -1,15 +1,15 @@
 package cmd
 
 import (
+	"embed"
 	"fmt"
 	"os"
 
-	"github.com/knadh/stuffbin"
-	models "zerodha.tech/kubekutr/models"
-	"zerodha.tech/kubekutr/utils"
+	models "github.com/mr-karan/kubekutr/models"
+	"github.com/mr-karan/kubekutr/utils"
 )
 
-func prepareResources(resources []models.Resource, projectDir string, workload string, fs stuffbin.FileSystem) error {
+func prepareResources(resources []models.Resource, projectDir string, workload string, fs embed.FS) error {
 	for _, r := range resources {
 		err := utils.CreateResource(r, projectDir, workload, fs)
 		if err != nil {
