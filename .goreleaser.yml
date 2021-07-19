@@ -13,9 +13,6 @@ builds:
       - amd64
     ldflags:
       - -s -w -X "main.buildVersion={{ .Tag }} ({{ .ShortCommit }} {{ .Date }})"
-    hooks:
-      # stuff executables with static assets.
-      post: make pack-releases
 
 archives:
   - format: tar.gz
@@ -24,7 +21,7 @@ archives:
       - LICENSE
 
 snapcrafts:
-  - name_template: '{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  - name_template: "{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     summary: Cookie cutter templating tool for scaffolding K8s manifests.
     description: |
       kubekutr lets you quickly scaffold a bespoke configuration for Kubernetes resource manifests with an opinionated GitOps

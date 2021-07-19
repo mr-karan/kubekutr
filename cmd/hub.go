@@ -1,24 +1,24 @@
 package cmd
 
 import (
+	"embed"
 	"log"
 
-	"github.com/knadh/stuffbin"
+	models "github.com/mr-karan/kubekutr/models"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	models "github.com/mr-karan/kubekutr/models"
 )
 
 // Hub represents the structure for all app wide functions and structs.
 type Hub struct {
 	Logger  *logrus.Logger
 	Config  models.Config
-	Fs      stuffbin.FileSystem
+	Fs      embed.FS
 	Version string
 }
 
 // NewHub initializes an instance of Hub which holds app wide configuration.
-func NewHub(logger *logrus.Logger, fs stuffbin.FileSystem, buildVersion string) *Hub {
+func NewHub(logger *logrus.Logger, fs embed.FS, buildVersion string) *Hub {
 	hub := &Hub{
 		Logger:  logger,
 		Fs:      fs,

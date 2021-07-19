@@ -1,17 +1,17 @@
 package utils
 
 import (
+	"embed"
 	"fmt"
 	"io"
 	"os"
 	"path/filepath"
 
-	"github.com/knadh/stuffbin"
 	"github.com/mr-karan/kubekutr/models"
 )
 
 // CreateResource fetches metadata about the resource and produces the manifest.
-func CreateResource(resource models.Resource, rootDir string, workload string, fs stuffbin.FileSystem) error {
+func CreateResource(resource models.Resource, rootDir string, workload string, fs embed.FS) error {
 	var (
 		template           = resource.GetMetaData().TemplatePath
 		name               = resource.GetMetaData().Name

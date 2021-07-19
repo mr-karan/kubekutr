@@ -1,10 +1,10 @@
 package utils
 
 import (
+	"embed"
 	"os"
 	"path/filepath"
 
-	"github.com/knadh/stuffbin"
 	"github.com/mr-karan/kubekutr/models"
 )
 
@@ -24,7 +24,7 @@ func CreateGitopsDirectory(parentDir string, workload string) {
 }
 
 // CreateKustomization does something
-func CreateKustomization(parentDir string, rNames []string, fs stuffbin.FileSystem) error {
+func CreateKustomization(parentDir string, rNames []string, fs embed.FS) error {
 	path := filepath.Join(parentDir, "kustomization.yml")
 	f, err := os.Create(path)
 	if err != nil {

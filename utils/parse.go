@@ -1,20 +1,19 @@
 package utils
 
 import (
+	"embed"
 	"fmt"
 	"io"
 	"text/template"
-
-	"github.com/knadh/stuffbin"
 )
 
 // parse takes in a template path and the variables to be "applied" on it. The rendered template
 // is saved to the destination path.
-func parse(src string, fs stuffbin.FileSystem) (*template.Template, error) {
+func parse(src string, fs embed.FS) (*template.Template, error) {
 	// read template file
 	tmpl := template.New(src)
 	// load default templates
-	c, err := fs.Read("templates/containers.tmpl")
+	c, err := fs.ReadFile("templates/containers.tmpl")
 	if err != nil {
 		return nil, fmt.Errorf("error parsing default template: %v", err)
 	}
@@ -23,7 +22,7 @@ func parse(src string, fs stuffbin.FileSystem) (*template.Template, error) {
 		return nil, fmt.Errorf("error parsing default template: %v", err)
 	}
 	// load main template
-	f, err := fs.Read(src)
+	f, err := fs.ReadFile(src)
 	if err != nil {
 		return nil, fmt.Errorf("error reading template file %s: %v", src, err)
 	}
@@ -39,7 +38,7 @@ func writeTemplate(tmpl *template.Template, config map[string]interface{}, dest 
 	return nil
 }
 
-func saveResource(template string, name string, dest io.Writer, config map[string]interface{}, fs stuffbin.FileSystem) error {
+func saveResource(template string, name string, dest io.Writer, config map[string]interface{}, fs embed.FS) error {
 	// parse template file
 	tmpl, err := parse(template, fs)
 	if err != nil {
