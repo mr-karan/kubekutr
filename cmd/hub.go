@@ -6,7 +6,7 @@ import (
 	"github.com/knadh/stuffbin"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	models "zerodha.tech/kubekutr/models"
+	models "github.com/mr-karan/kubekutr/models"
 )
 
 // Hub represents the structure for all app wide functions and structs.

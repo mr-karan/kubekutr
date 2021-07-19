@@ -1,4 +1,4 @@
-module zerodha.tech/kubekutr
+module github.com/mr-karan/kubekutr
 
 go 1.12
 

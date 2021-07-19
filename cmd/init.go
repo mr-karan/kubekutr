@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-yaml/yaml"
 	"github.com/urfave/cli"
-	"zerodha.tech/kubekutr/models"
+	"github.com/mr-karan/kubekutr/models"
 )
 
 var (
